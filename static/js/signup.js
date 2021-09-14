@@ -13,7 +13,6 @@ let helpName = document.querySelector(".help-text-name");
 let helpTeam = document.querySelector(".help-text-team");
 
 function checkText(value) {
-  console.log(value);
   switch (value) {
     case "signupId":
       helpId.classList.add("show");
@@ -22,6 +21,10 @@ function checkText(value) {
     case "signupId-reg":
       helpId.classList.add("show");
       helpId.innerHTML = `아이디는 영문자로 시작하는 6~20자 영문자 또는 숫자만 가능합니다`;
+      break;
+    case "signupId-reg-Btn":
+      helpId.classList.add("show");
+      helpId.innerHTML = `아이디 중복 체크를 확인해주세요.`;
       break;
     case "signupId-reg-check":
       helpId.classList.add("show-color");
@@ -75,16 +78,16 @@ function checkText(value) {
       helpTeam.classList.remove("show");
       helpTeam.innerHTML = ``;
       break;
-
     default:
-      console.log("check");
+      console.log("check check!!");
   }
 }
+// 아이디 중복 확인 버튼 클릭했는지 확인하는 변수
+let checkId = false;
+// 회원가입 버튼 클릭 했을 때
 signupBtn.addEventListener("click", (e) => {
   if (signupId.value === "") checkText("signupId");
   if (signupId.value !== "") checkText("signupId-hidden");
-  if (!is_id(signupId.value)) checkText("signupId-reg");
-  if (is_id(signupId.value)) checkText("signupId-reg-check");
   if (signupPw.value === "") checkText("signupPw");
   if (signupPw.value !== "") checkText("signupPw-hidden");
   if (signupCheckPw.value === "") checkText("signupCheckPw");
@@ -94,10 +97,28 @@ signupBtn.addEventListener("click", (e) => {
   if (signupName.value !== "") checkText("signupName-hidden");
   if (signupTeam.value === "") checkText("signupTeam");
   if (signupTeam.value !== "") checkText("signupTeam-hidden");
+  if (isNaN(signupTeam.value)) checkText("signupTeam-number");
+  if (signupId.value !== "" && !checkId) {
+    checkText("signupId-reg-Btn");
+    return null;
+  }
 });
 
 idCheckBtn.addEventListener("click", (e) => {
-  checkText("signupId-haveId");
+  if (signupId.value === "") {
+    checkText("signupId");
+    return null;
+  }
+  if (!is_id(signupId.value)) {
+    checkText("signupId-reg");
+    return null;
+  }
+  if (is_id(signupId.value)) {
+    checkText("signupId-reg-check");
+    checkId = true;
+  }
+  // checkText("signupId-reg-check");
+  // checkText("signupId-haveId");
 });
 
 function is_id(value) {

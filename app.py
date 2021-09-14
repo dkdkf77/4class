@@ -17,6 +17,12 @@ def signupPage():
     return render_template('signup.html')
 
 
+@app.route('/signup/check_dup', methods=['POST'])
+def check_dup():
+    userid_receive = request.form['username_give']
+    exists = bool(db.guestbooks.find_one({"userid": userid_receive}))
+    return jsonify({'result': 'success', 'exists': exists})
+
 @app.route('/room')
 def room():
     return render_template('room.html')
