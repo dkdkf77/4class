@@ -1,0 +1,14 @@
+{% extends "index.html" %}
+{% block head%}
+<script defer src="{{ url_for('static', filename='js/room.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/room.css' )}}">
+{% endblock%}
+{% block content %}
+    <ul class ='temp'>
+        <li>
+            다들 화이팅!
+        </li>
+    </ul>
+
+
+{% endblock %}
