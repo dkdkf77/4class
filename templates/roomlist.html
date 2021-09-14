@@ -1,0 +1,10 @@
+{% extends "index.html" %}
+{% block head%}
+<script defer src="{{ url_for('static', filename='js/login.js') }}"></script>
+{% endblock%}
+{% block content %}
+<section class="login-wrap">
+    <h2>Login</h2>
+    <div>로그인 페이지입니다.</div>
+</section>
+{% endblock %}
