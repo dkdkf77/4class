@@ -1,4 +1,106 @@
+.headcss{
+  background-color: blue;
+}
+.main-font{
+  font-size: 100px;
+  text-align: center;
+  margin: auto;
+}
 
-.temp {
-    color: red;
+.reviews {
+  width: 500px;
+  height: 500px;
+  background-color: grey;
+  margin: auto;
+}
+
+.form-group1 {
+  width: 100px;
+  height: auto;
+  text-align: center;
+  display: block;
+  margin: auto;
+}
+
+
+.resist {
+  background-color: green;
+}
+
+.input-div {
+  width: 100px;
+  height: 20px;
+  display: block;
+  margin: 20px 500px 20px 500px;
+}
+
+.container {
+  background: skyblue;
+  width: auto;
+  height: 120vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.item {
+ width: 300px;
+ height: 90px;
+ border: 1px solid black;
+}
+
+.item1 {
+  background: #ef9a9a;
+}
+.item2 {
+  background: #536dfe;
+}
+.item3 {
+  background: #b8f4c8;
+}
+.item4 {
+  background: #ff8a65;
+}
+.item5 {
+  background: #fff9c4;
+}
+.item6 {
+  background: #00bfa5;
+}
+.item7 {
+  background: #efebe9;
+}
+.item8 {
+  background: #607d8b;
+}
+.item9 {
+  background: #1b5e20;
+}
+.item10 {
+  background: #ffd54f;
+}
+
+
+/* .foot {
+  width: auto;
+  height: 300px;
+  background-color: royalblue;
+} */
+.btn {
+  border: 1px solid skyblue;
+  background-color: rgba(0,0,0,0);
+  color: skyblue;
+  padding: 5px;
+  display: block;
+  margin: auto;
+}
+
+.my-img {
+  width: auto;
+  height: 500px;
+  background-image: url(https://media.istockphoto.com/vectors/vector-seamless-pattern-with-waves-from-dots-beach-and-waves-light-vector-id1319285545?b=1&k=20&m=1319285545&s=170667a&w=0&h=fl50Gpl9VavGn4yuNfYrYGENolJEcnMDIkzwmF2v-hA=);
+  background-repeat: repeat;
+  background-position: center;
+
 }
