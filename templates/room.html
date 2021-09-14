@@ -1,14 +1,27 @@
 {% extends "index.html" %}
 {% block head%}
-<script defer src="{{ url_for('static', filename='js/room.js') }}"></script>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/room.css' )}}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/room.css' ) }}">
 {% endblock%}
 {% block content %}
-    <ul class ='temp'>
-        <li>
-            다들 화이팅!
-        </li>
-    </ul>
+    <section class="headcss">
+    <div class="subcss">
+      <h1 class="main-font"> N Port </h1>
+    </div>
+  </section>
+  <section>
+        <div class="container">
+          <div class="item item1"></div>
+          <div class="item item2"></div>
+          <div class="item item3"></div>
+          <div class="item item4"></div>
+        </div>
+        <div class="input-div">
+          <textarea name="text" id="" cols="120" rows="1">글을 남겨 보세요</textarea>
+        </div>
+          <button class="btn">등록</button>
 
+      <div class="my-img">
+      </div>
 
+  </section>
 {% endblock %}
