@@ -15,15 +15,33 @@
 .login-wrap {
   width: 500px;
 }
+.label-box {
+  margin-top: 18px;
+}
 .label-wrap {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 18px;
 }
 .label-wrap label {
   width: 120px;
   margin: 0;
+}
+.label-wrap label span {
+  font-size: 12px;
+}
+.help-text {
+  display: none;
+  margin: 4px 0 0 120px;
+  font-size: 13px;
+  color: #fa5252;
+}
+.show {
+  display: block;
+}
+.show-color {
+  display: block;
+  color: #4dabf7;
 }
 .label-wrap input {
   flex: 1;
