@@ -20,10 +20,6 @@ def signup():
 def room():
     return render_template('room.html')
 
-@app.route('/roomlist')
-def roomlist():
-    return render_template('roomlist.html')
-
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
 
