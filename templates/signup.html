@@ -1,7 +1,55 @@
 {% extends "index.html" %}
-{% block content %}
-<section class="login-wrap">
-    <h2>signup</h2>
-    <div>회원가입 페이지입니다.</div>
-</section>
+{% block head %}
+<script defer src="{{ url_for('static', filename='js/signup.js') }}"></script>
 {% endblock %}
+{% block content %}
+<div class="signup-container">
+    <section class="signup-wrap">
+        <h2 class="sub-title">회원가입</h2>
+        <div class="signup-form-wrap">
+            <div class="label-box">
+                <div class="label-wrap">
+                    <label>아이디</label>
+                    <input type="text" class="signup-id" placeholder="아이디를 입력해주세요"/>
+                    <button class="id-check">중복확인</button>
+                </div>
+                <p class="help-text help-text-id"></p>
+            </div>
+            <div class="label-box">
+                <div class="label-wrap">
+                    <label>비밀번호</label>
+                    <input type="password" class="signup-pw" placeholder="비밀번호를 입력해주세요"/>
+                </div>
+                <p class="help-text help-text-pw"></p>
+            </div>
+            
+            <div class="label-box">
+                <div class="label-wrap">
+                    <label>비밀번호 확인</label>
+                    <input type="password" class="signup-check-pw" placeholder="비밀번호를 한번 더 입력해주세요"/>
+                </div>
+                <p class="help-text help-text-check-pw"></p>
+            </div>
+            
+            <div class="label-box">
+                <div class="label-wrap">
+                    <label>이름</label>
+                    <input type="text" class="signup-name" placeholder="이름을 입력해주세요"/>
+                </div>
+                <p class="help-text help-text-name"></p>
+            </div>
+            
+            <div class="label-box">
+                <div class="label-wrap">
+                    <label>팀 <span>(숫자로만 입력)</span></label>
+                    <input type="text" class="signup-team" placeholder="예) 4"/>
+                </div>
+                <p class="help-text help-text-team"></p>
+            </div>
+            
+            <button class="signup-btn defautl-btn">회원가입</button>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
