@@ -1,3 +1,60 @@
-body {
-  background-color: #ddd;
+.sub-title {
+  margin-bottom: 30px;
+  font-size: 32px;
+  font-weight: 600;
+}
+.signup-container,
+.login-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.signup-wrap,
+.login-wrap {
+  width: 500px;
+}
+.label-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 18px;
+}
+.label-wrap label {
+  width: 120px;
+  margin: 0;
+}
+.label-wrap input {
+  flex: 1;
+  padding: 8px;
+  height: 40px;
+  border: 1px solid #ced4da;
+  border-radius: 3px;
+}
+.label-wrap input::placeholder {
+  color: #adb5bd;
+}
+.id-check {
+  padding: 8px 15px;
+  height: 40px;
+  border: 1px solid #000;
+  background-color: #000;
+  color: #fff;
+  font-size: 13px;
+}
+.defautl-btn {
+  width: 100%;
+  margin-top: 30px;
+  padding: 15px;
+  background-color: black;
+  color: #fff;
+}
+.signup-page-btn {
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+  border: 1px solid #000;
+  background-color: #fff;
+  color: #000;
 }
