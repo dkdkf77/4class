@@ -5,10 +5,9 @@ $(document).ready(function () {
 });
 
 function registration() {
-  // 화면에 입력어 있는 제목, 저자, 리뷰 내용을 가져옵니다.
+
   let textinput = $('#textinput').val();
 
-  // POST /review 에 저장(Create)을 요청합니다.
   $.ajax({
       type: "POST",
       url: "/room",
@@ -27,11 +26,11 @@ function showgets() {
     url: "/room",
     data: {},
     success: function (response) {
-      let gets = response['allgets']
-      for (let i = 0; i < gets.length; i++) {
-        let comment = allget[i]['comment']
+      let roomget = response['roomgets']
+      for (let i= 0; i<roomget.length; i++) {
+        let gets = allget[i]['roomget']
         let temp_html = `<div class="container my-img">
-                          <div class="item item1">${comment}</div>
+                          <div class="item item1">${gets}</div>
                          </div>`
       $('#item').append(temp_html);                   
       } 

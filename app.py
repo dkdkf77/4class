@@ -29,15 +29,15 @@ def roompost():
     comment_receive = ['comment_give']
 
     doc = {
-         "comment" : comment_receive
+         "speak" : comment_receive
     }
     db.comment.insert_one(doc)
     return jsonify({'msg': '등록 완료!'})
 
 @app.route('/room', methods = ['GET'])
 def roomget():
-    gets = list(db.comment.find({}, {'_id': False}))
-    return jsonify({'allgets': gets})
+    roomgets = list(db.comment.find({}, {'_id': False}))
+    return jsonify({'roomget': roomgets})
 
 
 @app.route('/signup/check_dup', methods=['POST'])

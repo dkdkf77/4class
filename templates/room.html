@@ -2,7 +2,7 @@
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/room.css' ) }}">
 <script defer src="{{ url_for('static', filename='js/room.js') }}"></script>
-<title>N Port</title>
+<title> N Port </title>
 {% endblock%}
 {% block content %}
 
@@ -19,7 +19,7 @@
         <div class="item item1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, suscipit.</div>
       </div>
       <div class="input-div">
-        <textarea name="text" placeholder="마음을 남기세요." id="textinput" cols="120" rows="1"></textarea>
+        <textarea type="text" placeholder="마음을 남기세요." id="textinput" cols="120" rows="1"></textarea>
       </div>
       <button onclick="registration()" class="btn">등록</button>
 
