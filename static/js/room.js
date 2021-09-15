@@ -26,13 +26,14 @@ function showgets() {
     url: "/room",
     data: {},
     success: function (response) {
-      let roomget = response['roomgets']
-      for (let i= 0; i<roomget.length; i++) {
-        let gets = allget[i]['roomget']
+      let register = response['roomgets'];
+      for (let i = 0; i < register.length; i++) {
+        let gets = roomget[i]['speak']
+        console.log(gets)
         let temp_html = `<div class="container my-img">
-                          <div class="item item1">${gets}</div>
+                          <div class="item itam1">${gets}</div>
                          </div>`
-      $('#item').append(temp_html);                   
+       $('#postbox').append(temp_html);                   
       } 
     }
   })

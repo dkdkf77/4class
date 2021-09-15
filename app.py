@@ -26,7 +26,7 @@ def room():
 
 @app.route('/room', methods = ['POST'])
 def roompost():
-    comment_receive = ['comment_give']
+    comment_receive = request.form['comment_give']
 
     doc = {
          "speak" : comment_receive
@@ -36,8 +36,8 @@ def roompost():
 
 @app.route('/room', methods = ['GET'])
 def roomget():
-    roomgets = list(db.comment.find({}, {'_id': False}))
-    return jsonify({'roomget': roomgets})
+    roomgets = list(db.comment.find({'speak'}, {'_id': False}));
+    return jsonify({'roomget': roomgets});
 
 
 @app.route('/signup/check_dup', methods=['POST'])
