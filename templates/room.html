@@ -1,7 +1,8 @@
 {% extends "index.html" %}
-{% block head%}
+{% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/room.css' ) }}">
-<title>N Port</title>
+<script defer src="{{ url_for('static', filename='js/room.js') }}"></script>
+<title> N Port </title>
 {% endblock%}
 {% block content %}
 
@@ -14,16 +15,15 @@
       </div>
     </section>
     <section>
-      <div class="container my-img">
-        <div class="item item1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, suscipit.</div>
-        <div class="item item2">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod, ea.</div>
-        <div class="item item3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, iure corrupti rem iste itaque amet.</div>
-        <div class="item item4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, illum!</div>
-      </div>
+      <tbody id="postbox">
+        <div class="container my-img">
+          <div class="item item1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, suscipit.</div>
+        </div>
+      </tbody>
       <div class="input-div">
-        <textarea name="text" placeholder="마음을 남기세요." id="text-input" cols="120" rows="1"></textarea>
+        <textarea type="text" placeholder="마음을 남기세요." id="textinput" cols="120" rows="1"></textarea>
       </div>
-      <button class="btn">등록</button>
+      <button onclick="registration()" class="btn">등록</button>
 
       <div class="foot">
       </div>
