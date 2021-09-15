@@ -1,4 +1,31 @@
-.container {
+.roomlist-container {
+  width: 1000px;
+  margin: 30px auto;
+}
+.roomlist-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.roomlist {
+  width: 23%;
+  height: 120px;
+  margin: 15px 0px;
+  line-height: 120px;
+  text-align: center;
+  color: #fff;
+  background-color: #000;
+  border: 1px solid black;
+}
+.roomlist:hover {
+  cursor: pointer;
+  color: #000;
+  background-color: #fff;
+}
+
+/* 지연님 작업하신 것 일단 주석해놨어요! */
+/* .container {
   width: 100%;
   padding-right: 15px;
   padding-left: 15px;
@@ -147,4 +174,4 @@
   text-align: center;
   padding-top: 17px;
   border-radius: 10px;
-}
+} */

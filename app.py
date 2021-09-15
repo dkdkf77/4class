@@ -6,7 +6,7 @@ import hashlib
 app = Flask(__name__)
 
 
-client = client = pymongo.MongoClient('localhost', 27017)
+client = pymongo.MongoClient('localhost', 27017)
 db = client.port
 
 
@@ -52,14 +52,19 @@ def room():
     return render_template('room.html')
 
 
-#@app.route('/roomlist', methods=['GET'])
-#def roomlist():
+@app.route('/roomlist')
+def roomlist():
+    return render_template('roomlist.html')
+
+
+# @app.route('/roomlist', methods=['GET'])
+# def roomlist():
  #   team_receive = request.form['team_give']
   #  doc = {
    #     "team": team_receive  # 팀번호
-    #}
-    #db.rooms.insert_one(doc)
-    #return jsonify({'result': 'success'})
+    # }
+    # db.rooms.insert_one(doc)
+    # return jsonify({'result': 'success'})
 
 
 if __name__ == '__main__':
