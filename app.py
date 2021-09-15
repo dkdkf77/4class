@@ -9,10 +9,38 @@ app = Flask(__name__)
 client = pymongo.MongoClient('localhost', 27017)
 db = client.port
 
+SECRET_KEY = 'SPARTA'
+
 
 @app.route('/')
 def main():
     return render_template('login.html')
+
+
+@app.route('/login', methods=['POST'])
+def login():
+    params = request.get_json()
+    userid_receive = params['loginid_give']
+    password_receive = params['loginpw_give']
+    pw_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
+    result = db.port.find_one({'id': userid_receive, 'password': pw_hash})
+
+    # 아이디를 정상적으로 찾았을 때
+    if result is not None:
+        payload = {
+            'id': userid_receive,
+            # 토큰 유효시간
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=1)
+        }
+
+        token = jwt.encode(payload, SECRET_KEY,
+                           algorithm='HS256').decode('utf-8')
+
+        return jsonify({'result': 'success', 'token': token})
+
+    # 찾지 못하면
+    else:
+        return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
 
 
 @app.route('/signup')
