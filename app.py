@@ -17,9 +17,28 @@ def signupPage():
     return render_template('signup.html')
 
 
-@app.route('/room')
-def room():
-    return render_template('room.html')
+# @app.route('/room', methods = ['POST'])
+# def room():
+#     comment_receive = request.form['comment_give']
+#     # name_receive = request.form['name_give']
+#     # datetime_receive = request.form['datetime_give']
+#     # uid_receive = request.form['uid_give']
+
+#     doc = {
+#          'comment': comment_receive,
+#         #  'name' : name_receive,
+#         #  'datetime' : datetime_receive,
+#         #  'uid' : uid_receive
+#     }
+#     db.roomregist.insert_one(doc)
+#     return jsonify({'msg': '등록 완료!'})  
+
+# @app.route('/room', methods = ['GET'])
+# def roomget():
+#     gets = list(db.port.find({}))
+#     return jsonify({'all-gets': gets})
+
+
 
 
 @app.route('/roomlist')
