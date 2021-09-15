@@ -1,8 +1,13 @@
+.test {
+  background-color: rgb(233, 231, 231);
+}
+
 .headcss{
   background-color: blue;
 }
 .main-font{
   font-size: 100px;
+  color: goldenrod;
   text-align: center;
   margin: auto;
 }
@@ -27,11 +32,11 @@
   background-color: green;
 }
 
-.input-div {
-  width: 100px;
-  height: 20px;
+#text-input {
+  width: 500px;
+  height: 70px;
   display: block;
-  margin: 20px 500px 20px 500px;
+  margin: 20px auto ;
 }
 
 .container {
@@ -94,13 +99,27 @@
   padding: 5px;
   display: block;
   margin: auto;
+  transition: 1s;
+}
+.btn:hover {
+  border: 1px solid skyblue;
+  background-color: rgba(0,0,0,0);
+  color: skyblue;
+  padding: 5px;
+  display: block;
+  margin: auto;
+  transition: 1s;
 }
 
 .my-img {
   width: auto;
-  height: 500px;
   background-image: url(https://media.istockphoto.com/vectors/vector-seamless-pattern-with-waves-from-dots-beach-and-waves-light-vector-id1319285545?b=1&k=20&m=1319285545&s=170667a&w=0&h=fl50Gpl9VavGn4yuNfYrYGENolJEcnMDIkzwmF2v-hA=);
   background-repeat: repeat;
   background-position: center;
 
+}
+.foot {
+  width: auto;
+  height: 100px;
+  background-color: rgb(233, 231, 231);
 }
