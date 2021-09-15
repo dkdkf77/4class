@@ -20,21 +20,24 @@ def signupPage():
     return render_template('signup.html')
 
 
-# @app.route('/room', methods = ['POST'])
-# def room():
-#     text = request.get_json()
-#     comment_receive = text['comment_give']
+@app.route('/room')
+def room():
+    return render_template('room.html')
 
-#     doc = {
-#          "comment" : comment_receive
-#     }
-#     db.port.insert_one(doc)
-#     return jsonify({'msg': '등록 완료!'})
+@app.route('/room', methods = ['POST'])
+def roompost():
+    comment_receive = ['comment_give']
 
-# @app.route('/room', methods = ['GET'])
-# def roomget():
-#     gets = list(db.port.find({}))
-#     return jsonify({'allgets': gets})
+    doc = {
+         "comment" : comment_receive
+    }
+    db.comment.insert_one(doc)
+    return jsonify({'msg': '등록 완료!'})
+
+@app.route('/room', methods = ['GET'])
+def roomget():
+    gets = list(db.comment.find({}, {'_id': False}))
+    return jsonify({'allgets': gets})
 
 
 @app.route('/signup/check_dup', methods=['POST'])
