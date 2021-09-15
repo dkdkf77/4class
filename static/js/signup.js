@@ -91,8 +91,8 @@ signupBtn.addEventListener("click", () => {
   if (signupPw.value === "") checkText("signupPw");
   if (signupPw.value !== "") checkText("signupPw-hidden");
   if (signupCheckPw.value === "") checkText("signupCheckPw");
-  if (signupPw.value === signupCheckPw.value) checkText("signupCheckPw-check");
   if (signupCheckPw.value !== "") checkText("signupCheckPw-hidden");
+  if (signupPw.value !== signupCheckPw.value) checkText("signupCheckPw-check");
   if (signupName.value === "") checkText("signupName");
   if (signupName.value !== "") checkText("signupName-hidden");
   if (signupTeam.value === "") checkText("signupTeam");
@@ -101,7 +101,14 @@ signupBtn.addEventListener("click", () => {
   if (!checkId) {
     checkText("signupId-reg-Btn");
     return null;
-  } else {
+  } else if (
+    checkId &&
+    signupId.value !== "" &&
+    signupPw.value !== "" &&
+    signupPw.value === signupCheckPw.value &&
+    signupName.value !== "" &&
+    signupTeam.value !== ""
+  ) {
     fetch("/signup/save", {
       method: "POST",
       headers: {
@@ -120,8 +127,10 @@ signupBtn.addEventListener("click", () => {
   }
 });
 
-idCheckBtn.addEventListener("click", (e) => {
+idCheckBtn.addEventListener("click", () => {
   if (signupId.value === "") {
+    helpId.classList.contains("show-color") &&
+      helpId.classList.remove("show-color");
     checkText("signupId");
     return null;
   }
@@ -133,6 +142,7 @@ idCheckBtn.addEventListener("click", (e) => {
     checkText("signupId-reg-check");
     checkId = true;
   }
+
   fetch("/signup/check_dup", {
     method: "POST",
     headers: {
@@ -143,10 +153,13 @@ idCheckBtn.addEventListener("click", (e) => {
     .then((response) => response.json())
     .then((response) => {
       if (response.exists) {
-        console.log("중복된 아이디입니다.");
+        // 중복된 아이디일때, show-color 클래스가 있으면 삭제해준다.
+        if (helpId.classList.contains("show-color")) {
+          helpId.classList.remove("show-color");
+        }
         checkText("signupId-haveId");
       } else {
-        console.log("중복되지 않은 아이디입니다.");
+        checkId = true;
         checkText("signupId-reg-check");
       }
     });
