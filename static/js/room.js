@@ -10,7 +10,7 @@ function registration() {
 
   $.ajax({
       type: "POST",
-      url: "/room",
+      url: "/room/room_post",
       data: { comment_give : textinput },
       success: function (response) {
           alert(response["msg"]);
@@ -23,18 +23,25 @@ function registration() {
 function showgets() {
   $.ajax({
     type: "GET",
-    url: "/room",
+    url: "/room/room_get",
     data: {},
     success: function (response) {
-      let register = response['roomgets'];
-      for (let i = 0; i < register.length; i++) {
-        let gets = roomget[i]['speak']
-        console.log(gets)
-        let temp_html = `<div class="container my-img">
-                          <div class="item itam1">${gets}</div>
-                         </div>`
-       $('#postbox').append(temp_html);                   
+      let db_comment = response['register'];
+      for (let i = 0; i < db_comment.length; i++) {
+        let gets = db_comment[i]['speak']
+        
+        let temp_html = `<div class="room-message-wrap">
+                            <span class="name">이미다</span>
+                            <p class="message">${gets}</p>
+                            <span class="datetime">2021년 09월 15일</span>
+                            <div class="button-wrap">
+                              <button class="edit-btn">수정</button>
+                              <button class="delete-btn">삭제</button>
+                            </div>
+                        </div>`
+       $('#room-wrap').append(temp_html);                   
       } 
     }
   })
 }
+    

@@ -52,7 +52,7 @@ def signupPage():
 def room():
     return render_template('room.html')
 
-@app.route('/room', methods = ['POST'])
+@app.route('/room/room_post', methods = ['POST'])
 def roompost():
     comment_receive = request.form['comment_give']
 
@@ -62,10 +62,11 @@ def roompost():
     db.comment.insert_one(doc)
     return jsonify({'msg': '등록 완료!'})
 
-@app.route('/room', methods = ['GET'])
+@app.route('/room/room_get', methods = ['GET'])
 def roomget():
-    roomgets = list(db.comment.find({'speak'}, {'_id': False}));
-    return jsonify({'roomget': roomgets});
+    db_comment = list(db.comment.find({}, {'_id': False}))
+    return jsonify({'register': db_comment});
+
 
 
 @app.route('/signup/check_dup', methods=['POST'])
@@ -74,6 +75,9 @@ def check_dup():
     userid_receive = params['userid_give']
     exists = bool(db.port.find_one({"id": userid_receive}))
     return jsonify({'result': 'success', 'exists': exists})
+
+
+
 
 
 @app.route('/signup/save', methods=['POST'])
