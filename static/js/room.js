@@ -26,7 +26,7 @@ function showgets() {
     url: "/room",
     data: {},
     success: function (response) {
-      let register = response['roomgets'];
+      let registers = response['register'];
       for (let i = 0; i < register.length; i++) {
         let gets = roomget[i]['speak']
         console.log(gets)
@@ -38,3 +38,4 @@ function showgets() {
     }
   })
 }
+    
