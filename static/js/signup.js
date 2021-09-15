@@ -122,8 +122,12 @@ signupBtn.addEventListener("click", () => {
       }),
     })
       .then((res) => res.json())
-      .then((response) => console.log("Success:", JSON.stringify(response)))
-      .catch((error) => console.error("Error:", error));
+      .then((response) => alert(response.result))
+      .then(() => (window.location.href = "/"))
+      .catch((error) => {
+        alert(error);
+        console.error("Error:", error);
+      });
   }
 });
 
@@ -142,7 +146,6 @@ idCheckBtn.addEventListener("click", () => {
     checkText("signupId-reg-check");
     checkId = true;
   }
-
   fetch("/signup/check_dup", {
     method: "POST",
     headers: {
