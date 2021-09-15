@@ -6,6 +6,8 @@ app = Flask(__name__)
 client = client = pymongo.MongoClient('localhost', 27017)
 db = client.port
 
+doc = {'name':'bobby','team-name':27}
+db.users.insert_one(doc)
 
 @app.route('/')
 def main():
