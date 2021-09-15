@@ -1,10 +1,22 @@
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 #room-list {
   background-color: red;
   background-position: center;
-  width: full-width;
+  width: auto;
+  margin-left: -5px;
   height: 185px;
   padding-top: 20px;
   padding-bottom: 10px;
+  background-image: url("http://www.picturebook-illust.com/upload_board/new_Gallery/Original/m/20185211373.jpg");
+  opacity: 0.8;
+  background-size: cover;
 }
 
 #room-list2 {
@@ -14,6 +26,9 @@
   height: 185px;
   padding-top: 20px;
   padding-bottom: 10px;
+  background-image: url("https://img03.scbao.com/210521/1082212-210521203Z277.jpg");
+  opacity: 0.8;
+  background-size: cover;
 }
 
 #room-list3 {
@@ -36,80 +51,100 @@
 
 .left-div {
   position: absolute;
-  background-color: blueviolet;
-  opacity: 0.7;
-  margin-left: 50px;
+  background-color: lightblue;
+  margin-left: 320px;
   width: 100px;
   height: 60px;
+  text-align: center;
+  opacity: 0.7;
+  padding-top: 17px;
+  border-radius: 10px;
 }
 
 .right-div {
   position: absolute;
-  background-color: blueviolet;
+  background-color: lightblue;
   opacity: 0.7;
-  margin-left: 160px;
+  margin-left: 430px;
   width: 100px;
   height: 60px;
+  text-align: center;
+  padding-top: 17px;
+  border-radius: 10px;
 }
 
 .left-under-div {
   position: absolute;
-  background-color: blueviolet;
+  background-color: lightblue;
   opacity: 0.7;
-  margin-left: 50px;
+  margin-left: 320px;
   margin-top: 72px;
   width: 100px;
   height: 60px;
+  text-align: center;
+  padding-top: 17px;
+  border-radius: 10px;
 }
 
 .right-under-div {
   position: absolute;
-  background-color: blueviolet;
+  background-color: lightblue;
   opacity: 0.7;
-  margin-left: 160px;
+  margin-left: 430px;
   margin-top: 72px;
   width: 100px;
   height: 60px;
+  text-align: center;
+  padding-top: 17px;
+  border-radius: 10px;
 }
 
 .left-div2 {
   position: absolute;
-  background-color: blueviolet;
+  background-color: lightblue;
   opacity: 0.7;
-  margin-left: 300px;
+  margin-left: 570px;
   width: 100px;
   height: 60px;
+  text-align: center;
+  padding-top: 17px;
+  border-radius: 10px;
 }
 
 .right-div2 {
   position: absolute;
-  background-color: blueviolet;
+  background-color: lightblue;
   opacity: 0.7;
-  margin-left: 410px;
+  margin-left: 680px;
   width: 100px;
   height: 60px;
+  text-align: center;
+  padding-top: 17px;
+  border-radius: 10px;
 }
 
 .left-under-div2 {
   position: absolute;
-  background-color: blueviolet;
+  background-color: lightblue;
   opacity: 0.7;
-  margin-left: 300px;
+  margin-left: 570px;
   margin-top: 72px;
   width: 100px;
   height: 60px;
+  text-align: center;
+  padding-top: 17px;
+  border-radius: 10px;
 }
 
 .right-under-div2 {
   position: absolute;
-  background-color: blueviolet;
+  background-color: lightblue;
   opacity: 0.7;
-  margin-left: 410px;
+  margin-left: 680px;
   margin-top: 72px;
   width: 100px;
   height: 60px;
+  text-align: center;
+  padding-top: 17px;
+  border-radius: 10px;
 }
-
-/*.container {
-    height: 100%;
-}*/
