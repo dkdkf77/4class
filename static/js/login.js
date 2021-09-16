@@ -36,7 +36,7 @@ loginBtn.addEventListener("click", () => {
   if (loginPw.value !== "") checkTextLogin("loginpw-hidden");
 
   if (loginId.value !== "" && loginPw.value !== "") {
-    fetch("/login", {
+    fetch("/login/save", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -48,12 +48,11 @@ loginBtn.addEventListener("click", () => {
       .then((response) => {
         if (response.result === "success") {
           document.cookie = `port-token=${response.token}`;
+          document.location.href = "roomlist";
         } else if (response.result === "fail") {
           alert(response.msg);
         }
       })
       .catch((error) => console.log("error = ", error));
   }
-  console.log("login id", loginId.value);
-  console.log("login pw", loginPw.value);
 });

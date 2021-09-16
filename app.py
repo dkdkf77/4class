@@ -3,6 +3,8 @@ import pymongo
 import jwt
 import datetime
 import hashlib
+from werkzeug.utils import secure_filename
+
 app = Flask(__name__)
 
 
@@ -12,29 +14,64 @@ db = client.port
 SECRET_KEY = 'SPARTA'
 
 
+def checkExpired():
+    if request.cookies.get('port-token') is not None:
+        return False
+    else:
+        return True
+
+
 @app.route('/')
 def main():
+    token_receive = request.cookies.get('port-token')
+    print("token_receive = ", token_receive)
+
+    try:
+        tokenExist = checkExpired()
+        print("tokenExist = ", tokenExist)
+
+        # 토큰이 없을 경우
+        if not token_receive:
+            return render_template('login.html', token=tokenExist)
+
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = db.users.find_one({"id": payload["id"]})
+        print("user_info == ", user_info)
+        if user_info:
+            return render_template('roomlist.html', user_info=user_info)
+
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for('roomlist', msg="로그인 시간 만료"))
+    except jwt.exceptions.DecodeError:
+        return redirect(url_for('roomlist', msg="로그인 정보 없음"))
+
+
+@app.route('/login')
+def loginPage():
     return render_template('login.html')
 
 
-@app.route('/login', methods=['POST'])
+@app.route('/login/save', methods=['POST'])
 def login():
     params = request.get_json()
     userid_receive = params['loginid_give']
     password_receive = params['loginpw_give']
     pw_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
-    result = db.port.find_one({'id': userid_receive, 'password': pw_hash})
+    result = db.users.find_one({'id': userid_receive, 'password': pw_hash})
 
     # 아이디를 정상적으로 찾았을 때
     if result is not None:
         payload = {
             'id': userid_receive,
             # 토큰 유효시간
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=1)
+            # 'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=5)
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=5)
         }
 
         token = jwt.encode(payload, SECRET_KEY,
                            algorithm='HS256').decode('utf-8')
+        # token = jwt.encode(payload, SECRET_KEY,
+        #                    algorithm='HS256')
 
         return jsonify({'result': 'success', 'token': token})
 
@@ -50,26 +87,31 @@ def signupPage():
 
 @app.route('/room')
 def room():
+    token_receive = request.cookies.get('port-token')
     return render_template('room.html')
 
-@app.route('/room/room_post', methods = ['POST'])
+
+@app.route('/room/room_post', methods=['POST'])
 def roompost():
     comment_receive = request.form['comment_give']
 
     doc = {
-         "speak" : comment_receive
+        "speak": comment_receive
     }
     db.comment.insert_one(doc)
     return jsonify({'msg': '등록 완료!'})
 
-@app.route('/room/room_get', methods = ['GET'])
+
+@app.route('/room/room_get', methods=['GET'])
 def roomget():
     token_receive = reequest.comment.get('token')
     payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-    db_comment = list(db.comment.find({}, {'_id': False}).sort("datetime", -1).limit(20))
+    db_comment = list(db.comment.find(
+        {}, {'_id': False}).sort("datetime", -1).limit(20))
     for db_comments in db_comment:
         db_comments["_id"] = str(post["id"])
-    return jsonify({'register': db_comment});
+    return jsonify({'register': db_comment})
+
 
 @app.route('/room/delete', methods=['POST'])
 def delete_star():
@@ -78,16 +120,12 @@ def delete_star():
     return jsonify({'result': 'success', 'msg': '삭제 완료 !'})
 
 
-
 @app.route('/signup/check_dup', methods=['POST'])
 def check_dup():
     params = request.get_json()
     userid_receive = params['userid_give']
-    exists = bool(db.port.find_one({"id": userid_receive}))
+    exists = bool(db.users.find_one({"id": userid_receive}))
     return jsonify({'result': 'success', 'exists': exists})
-
-
-
 
 
 @app.route('/signup/save', methods=['POST'])
@@ -105,7 +143,7 @@ def signup():
         "name": username_receive,
         "team": userteam_receive,
     }
-    db.port.insert_one(doc)
+    db.users.insert_one(doc)
     return jsonify({'result': "회원가입되었습니다."})
 
 
