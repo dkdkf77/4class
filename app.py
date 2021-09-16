@@ -64,8 +64,18 @@ def roompost():
 
 @app.route('/room/room_get', methods = ['GET'])
 def roomget():
-    db_comment = list(db.comment.find({}, {'_id': False}))
+    token_receive = reequest.comment.get('token')
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+    db_comment = list(db.comment.find({}, {'_id': False}).sort("datetime", -1).limit(20))
+    for db_comments in db_comment:
+        db_comments["_id"] = str(post["id"])
     return jsonify({'register': db_comment});
+
+@app.route('/room/delete', methods=['POST'])
+def delete_star():
+    speak_receive = request.form["speak_give"]
+    db.comment.delete_one({'speak': speak_receive})
+    return jsonify({'result': 'success', 'msg': '삭제 완료 !'})
 
 
 

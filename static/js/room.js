@@ -44,4 +44,18 @@ function showgets() {
     }
   })
 }
+
+function delete_word() {
+    $.ajax({
+        type: "POST",
+        url: `/room/delete`,
+        data: {
+           speak_give: "{{ speak }}"
+        },
+        success: function (response) {
+            alert(response["msg"])
+            window.location.reload();
+        }
+    });
+}
     
