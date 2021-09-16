@@ -90,7 +90,8 @@ def room():
     token_receive = request.cookies.get('port-token')
     return render_template('room.html')
 
-@app.route('/room', methods=['POST'])
+
+@app.route('/room/room_post', methods=['POST'])
 def roompost():
     comment_receive = request.form['comment_give']
 
@@ -101,10 +102,22 @@ def roompost():
     return jsonify({'msg': '등록 완료!'})
 
 
-@app.route('/room', methods=['GET'])
+@app.route('/room/room_get', methods=['GET'])
 def roomget():
-    roomgets = list(db.comment.find({'speak'}, {'_id': False}))
-    return jsonify({'roomget': roomgets})
+    token_receive = reequest.comment.get('token')
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+    db_comment = list(db.comment.find(
+        {}, {'_id': False}).sort("datetime", -1).limit(20))
+    for db_comments in db_comment:
+        db_comments["_id"] = str(post["id"])
+    return jsonify({'register': db_comment})
+
+
+@app.route('/room/delete', methods=['POST'])
+def delete_star():
+    speak_receive = request.form["speak_give"]
+    db.comment.delete_one({'speak': speak_receive})
+    return jsonify({'result': 'success', 'msg': '삭제 완료 !'})
 
 
 @app.route('/signup/check_dup', methods=['POST'])
