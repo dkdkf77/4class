@@ -151,6 +151,12 @@ def signup():
 # def room():
 #     return render_template('room.html')
 
+@app.route('/test', methods=['GET'])
+def test():
+    teatArray = ['1조','2조','3조','4조']
+    print("제대로 통신을 잘 하셨으면, 터미널에서 이 문구가 나와야해요!")
+    return jsonify({'msg':'제대로 작업하셨다면 이 문구가 떠야 합니다!'})
+
 
 @app.route('/roomlist')
 def roomlist():
