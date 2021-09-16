@@ -31,7 +31,7 @@
   font-size: 12px;
 }
 .help-text {
-  display: none;
+  /* display: none; */
   margin: 4px 0 0 120px;
   font-size: 13px;
   color: #fa5252;

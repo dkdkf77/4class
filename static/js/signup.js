@@ -15,67 +15,51 @@ let helpTeam = document.querySelector(".help-text-team");
 function checkText(value) {
   switch (value) {
     case "signupId":
-      helpId.classList.add("show");
       helpId.innerHTML = `아이디를 입력해주세요`;
       break;
     case "signupId-reg":
-      helpId.classList.add("show");
       helpId.innerHTML = `아이디는 영문자로 시작하는 6~20자 영문자 또는 숫자만 가능합니다`;
       break;
     case "signupId-reg-Btn":
-      helpId.classList.add("show");
       helpId.innerHTML = `아이디 중복 체크를 확인해주세요.`;
       break;
     case "signupId-reg-check":
-      helpId.classList.add("show-color");
       helpId.innerHTML = `사용할 수 있는 아이디입니다.`;
       break;
     case "signupId-haveId":
-      helpId.classList.add("show");
       helpId.innerHTML = `중복된 아이디 입니다.`;
       break;
     case "signupId-hidden":
-      helpId.classList.remove("show");
       helpId.innerHTML = ``;
       break;
     case "signupPw":
-      helpPw.classList.add("show");
       helpPw.innerHTML = `비밀번호를 입력해주세요`;
       break;
     case "signupPw-hidden":
-      helpPw.classList.remove("show");
       helpPw.innerHTML = ``;
       break;
     case "signupCheckPw":
-      helpCheckPw.classList.add("show");
       helpCheckPw.innerHTML = `비밀번호를 한번 더 입력해주세요`;
       break;
     case "signupCheckPw-check":
-      helpCheckPw.classList.add("show");
       helpCheckPw.innerHTML = `동일한 비밀번호를 입력해주세요`;
       break;
     case "signupCheckPw-hidden":
-      helpCheckPw.classList.remove("show");
       helpCheckPw.innerHTML = ``;
       break;
     case "signupName":
-      helpName.classList.add("show");
       helpName.innerHTML = `이름을 입력해주세요`;
       break;
     case "signupName-hidden":
-      helpName.classList.remove("show");
       helpName.innerHTML = ``;
       break;
     case "signupTeam":
-      helpTeam.classList.add("show");
       helpTeam.innerHTML = `조를 입력해주세요`;
       break;
     case "signupTeam-number":
-      helpTeam.classList.add("show");
       helpTeam.innerHTML = `숫자로만 입력해주세요`;
       break;
     case "signupTeam-hidden":
-      helpTeam.classList.remove("show");
       helpTeam.innerHTML = ``;
       break;
     default:
@@ -134,6 +118,7 @@ signupBtn.addEventListener("click", () => {
 });
 
 idCheckBtn.addEventListener("click", () => {
+  helpId.style.color = "#fa5252";
   if (signupId.value === "") {
     helpId.classList.contains("show-color") &&
       helpId.classList.remove("show-color");
@@ -158,13 +143,11 @@ idCheckBtn.addEventListener("click", () => {
     .then((response) => response.json())
     .then((response) => {
       if (response.exists) {
-        // 중복된 아이디일때, show-color 클래스가 있으면 삭제해준다.
-        if (helpId.classList.contains("show-color")) {
-          helpId.classList.remove("show-color");
-        }
+        // 중복된 아이디일때
         checkText("signupId-haveId");
       } else {
         checkId = true;
+        helpId.style.color = "#4dabf7";
         checkText("signupId-reg-check");
       }
     });
