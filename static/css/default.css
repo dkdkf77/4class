@@ -8,6 +8,7 @@
 body {
   font-family: "Noto Sans KR", sans-serif !important;
   font-size: 13px;
+  line-height: 1;
 }
 html,
 div,
@@ -145,4 +146,10 @@ a {
 a:hover,
 button:hover {
   cursor: pointer;
+}
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
 }

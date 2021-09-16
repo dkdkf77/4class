@@ -53,6 +53,9 @@ loginBtn.addEventListener("click", () => {
           alert(response.msg);
         }
       })
-      .catch((error) => console.log("error = ", error));
+      .catch((error) => {
+        alert(error);
+        console.log("error = ", error);
+      });
   }
 });
