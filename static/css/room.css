@@ -13,17 +13,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
-  padding-bottom: 10px;
+  padding: 10px;
   border-bottom: 1px solid #ddd;
 }
 .name {
-  width: 100px;
+  width: 150px;
   font-size: 13px;
+  color: #868e96;
 }
 .message {
   display: inline-block;
   margin: 0;
+  padding: 7px 10px;
   flex: 1;
 }
 .datetime {
@@ -32,20 +33,30 @@
 }
 .edit-btn,
 .delete-btn {
+  padding: 8px 12px;
   font-size: 13px;
   background-color: transparent;
-  border: 1px solid #000;
+  border: 1px solid #f03e3e;
+  color: #f03e3e;
 }
 .edit-btn {
   margin-right: 10px;
 }
-
+.btn {
+  color: #fff;
+  background-color: #000;
+}
 .create-wrap {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
+.room-message-wrap:nth-child(even) {
+  background-color: #f1f3f5;
+}
+#textinput {
+  border: 1px solid #ddd;
+}
 /* .test {
   background-color: rgb(233, 231, 231);
 }

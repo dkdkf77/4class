@@ -1,0 +1,27 @@
+{% extends "index.html" %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/room.css' ) }}">
+<script defer src="{{ url_for('static', filename='js/test.js') }}"></script>
+{% endblock%}
+{% block content %}
+<nav class="nav">
+  <div class="nav-container">
+      <h1 class="logo"><a href="/">N Port</a></h1>
+      <ul class="menu">
+          <li><span class="user-name">{{user_name}}</span>님 반갑습니다.</li>
+          <li class="logout-btn"><a href="#">로그아웃</a></li>
+      </ul>
+  </div>
+</nav>
+<section class="room-container">
+  <h2 class="room-title">{{user_team}}팀 방명록 방</h2>
+  <div id="room-wrap"></div>
+  
+  <div class="create-wrap">
+    <input type="text" class="message" id="textinput" placeholder="마음을 남기세요." />
+    <!-- <textarea type="text" placeholder="마음을 남기세요." id="textinput" cols="120" rows="1"></textarea> -->
+    <button onclick="registration()" class="btn">등록</button>
+  </div>
+</section>
+
+{% endblock %}
