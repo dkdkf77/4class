@@ -67,6 +67,16 @@ def roomget():
     db_comment = list(db.comment.find({}, {'_id': False}))
     return jsonify({'register': db_comment});
 
+@app.route('/room/delete', methods=['POST'])
+def delete_star():
+    speak_receive = request.form["speak_give"]
+    db.comment.delete_one({'speak': speak_receive})
+    return jsonify({'result': 'success', 'msg': '삭제 완료 !'})
+
+
+
+
+
 
 
 @app.route('/signup/check_dup', methods=['POST'])
