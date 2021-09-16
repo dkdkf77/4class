@@ -98,6 +98,7 @@ signupBtn.addEventListener("click", () => {
   if (signupTeam.value === "") checkText("signupTeam");
   if (signupTeam.value !== "") checkText("signupTeam-hidden");
   if (isNaN(signupTeam.value)) checkText("signupTeam-number");
+
   if (!checkId) {
     checkText("signupId-reg-Btn");
     return null;
@@ -107,7 +108,8 @@ signupBtn.addEventListener("click", () => {
     signupPw.value !== "" &&
     signupPw.value === signupCheckPw.value &&
     signupName.value !== "" &&
-    signupTeam.value !== ""
+    signupTeam.value !== "" &&
+    !isNaN(signupTeam.value)
   ) {
     fetch("/signup/save", {
       method: "POST",
