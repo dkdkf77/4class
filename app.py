@@ -21,29 +21,34 @@ def checkExpired():
         return True
 
 
-@app.route('/')
-def main():
+def userAuthCheck(str):
     token_receive = request.cookies.get('port-token')
-    print("token_receive = ", token_receive)
-
     try:
         tokenExist = checkExpired()
-        print("tokenExist = ", tokenExist)
 
-        # 토큰이 없을 경우
         if not token_receive:
             return render_template('login.html', token=tokenExist)
 
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+
         user_info = db.users.find_one({"id": payload["id"]})
-        print("user_info == ", user_info)
         if user_info:
-            return render_template('roomlist.html', user_info=user_info)
+            return render_template(str, token=tokenExist)
 
     except jwt.ExpiredSignatureError:
-        return redirect(url_for('roomlist', msg="로그인 시간 만료"))
+        return redirect(url_for('fail', msg="로그인 시간 만료"))
     except jwt.exceptions.DecodeError:
-        return redirect(url_for('roomlist', msg="로그인 정보 없음"))
+        return redirect(url_for('fail', msg="로그인 정보 없음"))
+
+
+@app.route('/fail')
+def fail():
+    return render_template('roomlist.html')
+
+
+@app.route('/')
+def main():
+    return userAuthCheck("roomlist.html")
 
 
 @app.route('/login')
@@ -64,15 +69,11 @@ def login():
         payload = {
             'id': userid_receive,
             # 토큰 유효시간
-            # 'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=5)
             'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=5)
         }
 
         token = jwt.encode(payload, SECRET_KEY,
                            algorithm='HS256').decode('utf-8')
-        # token = jwt.encode(payload, SECRET_KEY,
-        #                    algorithm='HS256')
-
         return jsonify({'result': 'success', 'token': token})
 
     # 찾지 못하면
@@ -87,8 +88,7 @@ def signupPage():
 
 @app.route('/room')
 def room():
-    token_receive = request.cookies.get('port-token')
-    return render_template('room.html')
+    return userAuthCheck("room.html")
 
 
 @app.route('/room/room_post', methods=['POST'])
@@ -134,7 +134,7 @@ def signup():
     userid_receive = params['userid_give']
     password_receive = params['password_give']
     username_receive = params['username_give']
-    userteam_receive = params['userteam_give']
+    userteam_receive = int(params['userteam_give'])
     password_hash = hashlib.sha256(
         password_receive.encode('utf-8')).hexdigest()
     doc = {
@@ -147,30 +147,16 @@ def signup():
     return jsonify({'result': "회원가입되었습니다."})
 
 
-# @app.route('/room')
-# def room():
-#     return render_template('room.html')
-
 @app.route('/test', methods=['GET'])
 def test():
-    teatArray = ['1조','2조','3조','4조']
+    teatArray = ['1조', '2조', '3조', '4조']
     print("제대로 통신을 잘 하셨으면, 터미널에서 이 문구가 나와야해요!")
-    return jsonify({'msg':'제대로 작업하셨다면 이 문구가 떠야 합니다!'})
+    return jsonify({'msg': '제대로 작업하셨다면 이 문구가 떠야 합니다!'})
 
 
 @app.route('/roomlist')
 def roomlist():
-    return render_template('roomlist.html')
-
-
-# @app.route('/roomlist', methods=['GET'])
-# def roomlist():
- #   team_receive = request.form['team_give']
-  #  doc = {
-   #     "team": team_receive  # 팀번호
-    # }
-    # db.rooms.insert_one(doc)
-    # return jsonify({'result': 'success'})
+    return userAuthCheck("roomlist.html")
 
 
 if __name__ == '__main__':
