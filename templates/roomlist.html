@@ -1,10 +1,12 @@
 {% extends "index.html" %}
 {% block head%}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/roomlist.css' ) }}">
+<script defer src="{{ url_for('static', filename='js/roomlist.js') }}"></script>
 {% endblock%}
 {% block content %}
 
 <section class="roomlist-container">
+    <button class="btn">btn</button>
     <h2 class="readable-hidden">조별 방 목록</h2>
     <div class="roomlist-wrap">
         <div class="roomlist">
