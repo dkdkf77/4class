@@ -10,6 +10,7 @@ app = Flask(__name__)
 
 
 client = pymongo.MongoClient('localhost', 27017)
+# client = pymongo.MongoClient('mongodb://test:test@localhost', 27017)
 db = client.port
 
 SECRET_KEY = 'SPARTA'
@@ -21,16 +22,13 @@ def checkExpired():
     else:
         return True
 
-# 토큰 여부 확인해서 페이지별로 이동하는 공통 함수
 
-
+# 로그인한 유저의 정보를 전역변수로 설정.
 user_team = 0
 user_name = ''
 user_id = ''
 
-
-def test_number(value):
-    return value
+# 토큰 여부 확인해서 페이지별로 이동하는 공통 함수
 
 
 def userAuthCheck(str):
@@ -50,7 +48,6 @@ def userAuthCheck(str):
         user_team = user_info['team']
         user_name = user_info['name']
         user_id = user_info['id']
-        test_number(user_team)
 
         if user_info:
             return render_template(str, token=tokenExist, user_name=user_name, user_team=user_team)
@@ -59,13 +56,6 @@ def userAuthCheck(str):
         return redirect(url_for('fail', msg="로그인 시간 만료"))
     except jwt.exceptions.DecodeError:
         return redirect(url_for('fail', msg="로그인 정보 없음"))
-
-
-@app.route('/testlist')
-def testlist():
-    return userAuthCheck("testlist.html")
-
-# 시작
 
 
 @app.route('/testroom')

@@ -133,3 +133,72 @@
   color: #fff;
   font-weight: 500;
 }
+@media screen and (max-width: 1200px) {
+  .nav-container,
+  .roomlist-container,
+  .room-container {
+    width: 100%;
+    padding: 0px 15px;
+  }
+}
+@media screen and (max-width: 780px) {
+  .signup-wrap,
+  .login-wrap {
+    width: 92%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    font-size: 10px;
+  }
+  .menu li,
+  .menu li a {
+    padding: 0;
+    font-size: 0.6rem;
+  }
+  .sub-title {
+    font-size: 1.8rem;
+  }
+  .label-wrap label {
+    width: 100px;
+    font-size: 0.85rem;
+  }
+  .id-check {
+    padding: 8px 7px;
+    font-size: 0.6rem;
+  }
+  .label-wrap input::placeholder {
+    font-size: 0.85rem;
+  }
+  .roomlist {
+    height: 80px;
+    line-height: 80px;
+    margin: 6px 0;
+  }
+  .room-message-wrap {
+    display: block;
+  }
+  .name,
+  .message,
+  .datetime {
+    width: 100%;
+    display: block;
+    padding: 5px 0;
+    margin: 0;
+    font-size: 0.8rem;
+  }
+  .name {
+    color: #adb5bd;
+  }
+  .button-wrap,
+  .datetime {
+    text-align: right;
+  }
+  .datetime {
+    display: none;
+  }
+  #textinput {
+    padding: 10px;
+  }
+}

@@ -9,6 +9,7 @@ body {
   font-family: "Noto Sans KR", sans-serif !important;
   font-size: 13px;
   line-height: 1;
+  overflow-x: hidden;
 }
 html,
 div,
