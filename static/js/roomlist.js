@@ -39,6 +39,6 @@ function userRoomCheck(e, team, name) {
     );
   } else {
     alert(`${userName} 회원님의 ${userRoomNumber}팀 방명록으로 이동합니다.`);
-    window.location.href = "/testroom";
+    window.location.href = "/room";
   }
 }

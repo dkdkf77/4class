@@ -9,8 +9,8 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 
 
-# client = pymongo.MongoClient('localhost', 27017)
-client = pymongo.MongoClient('mongodb://test:test@localhost', 27017)
+client = pymongo.MongoClient('localhost', 27017)
+# client = pymongo.MongoClient('mongodb://test:test@localhost', 27017)
 db = client.port
 
 SECRET_KEY = 'SPARTA'
@@ -58,38 +58,40 @@ def userAuthCheck(str):
         return redirect(url_for('fail', msg="로그인 정보 없음"))
 
 
-@app.route('/testroom')
+@app.route('/room')
 def testPage():
-    return userAuthCheck("test.html")
+    return userAuthCheck("room.html")
 
 
-@app.route('/test/room', methods=['GET'])
+@app.route('/roomlist/room', methods=['GET'])
 def testRoom():
-    return render_template('test.html')
+    return render_template('room.html')
 
 
-@app.route('/test/list', methods=['GET'])
+@app.route('/room/comment', methods=['GET'])
 def checkTeamRoom():
     teamList = list(db.comment.find({"team": user_team}, {'_id': False}))
     return jsonify({'teamMessage': teamList, 'login_user': user_id})
 
 # 내가 등록한 글만 삭제해야됨
 #  류승환 개자이너  delete api 코드
-@app.route('/test/delete', methods=['POST'])
-def comment_delete():
-    uid_receive = request.form["uid_give"],
-    id_receive = request.form["id_give"],
-    db.comment.delete_one({'uid': uid_receive,'id': id_receive})
-    return jsonify({'msg': "삭제되었습니다"})
 
-# 이다미 개발자님의 delete api 코드
+
 # @app.route('/test/delete', methods=['POST'])
 # def comment_delete():
-#     params = request.get_json()
-#     uid_receive = params['uid_give']
-#     id_receive = params['id_give']
+#     uid_receive = request.form["uid_give"],
+#     id_receive = request.form["id_give"],
 #     db.comment.delete_one({'uid': uid_receive, 'id': id_receive})
 #     return jsonify({'msg': "삭제되었습니다"})
+
+# 이다미 개발자님의 delete api 코드
+@app.route('/room/delete', methods=['POST'])
+def comment_delete():
+    params = request.get_json()
+    uid_receive = params['uid_give']
+    id_receive = params['id_give']
+    db.comment.delete_one({'uid': uid_receive, 'id': id_receive})
+    return jsonify({'msg': "삭제되었습니다"})
 # 종료
 
 
@@ -196,7 +198,8 @@ def roompost():
 
 @app.route('/room/room_get', methods=['GET'])
 def roomget():
-    db_comment = list(db.comment.find({}, {'_id': False}).sort("datetime", -1).limit(20))
+    db_comment = list(db.comment.find(
+        {}, {'_id': False}).sort("datetime", -1).limit(20))
     for db_comments in db_comment:
         db_comments["_id"] = str(post["id"])
     return jsonify({'register': db_comment})

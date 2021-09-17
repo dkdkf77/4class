@@ -1,24 +1,21 @@
-// window.addEventListener("load", function () {
-//   teamRoomLoad();
-// });
 $(document).ready(function () {
-  teamRoomLoad()();
+  teamRoomLoad();
 });
 
 function teamRoomLoad() {
   $.ajax({
     type: "GET",
-    url: "/test/list",
+    url: "/room/comment",
     data: {},
     success: function (response) {
       let teamMessage = response["teamMessage"];
       let loginUser = response["login_user"];
       for (let i = 0; i < teamMessage.length; i++) {
-        let speak = teamMessage[i]['speak']
-        let name = teamMessage[i]['name']
-        let date = teamMessage[i]['date']
-        let uid = teamMessage[i]['uid']
-        let id = teamMessage[i]['id']
+        let speak = teamMessage[i]["speak"];
+        let name = teamMessage[i]["name"];
+        let date = teamMessage[i]["date"];
+        let uid = teamMessage[i]["uid"];
+        let id = teamMessage[i]["id"];
 
         let temp_html = `<div class="room-message-wrap">
                             <span class="name">${name}</span>
@@ -28,16 +25,18 @@ function teamRoomLoad() {
                          
                               <button class="delete-btn" onclick="delete_word('${uid}','${id}','${loginUser}')">삭제</button>
                             </div>
-                        </div>`
-       $('#room-wrap').append(temp_html);
+                        </div>`;
+        $("#room-wrap").append(temp_html);
       }
-    }
-  })
+    },
+  });
 }
 
-
+// window.addEventListener("load", function () {
+//   teamRoomLoad();
+// });
 // function teamRoomLoad() {
-//   fetch("/test/list", {
+//   fetch("/room/comment", {
 //     method: "GET",
 //     headers: { "Content-Type": "application/json" },
 //   })
@@ -70,50 +69,51 @@ function teamRoomLoad() {
 
 // ajax로 만들 delete
 
-function delete_word(uid, id, loginId) {
-  $.ajax({
-    type: "POST",
-    url: `/test/delete`,
-    data: {
-      uid_give: uid,id_give: id
-    },
-    success: function (response) {
-      if (id !== loginId) {
-        alert('${loginId} 님이 작성한 글만 삭제할 수 있습니다.');
-      } else {
-        alert(response["msg"]);
-        window.location.href = "/testroom"
-      }
-    },
-  });
-}
+// function delete_word(uid, id, loginId) {
+//   $.ajax({
+//     type: "POST",
+//     url: `/room/delete`,
+//     data: {
+//       uid_give: uid,
+//       id_give: id,
+//     },
+//     success: function (response) {
+//       if (id !== loginId) {
+//         alert("${loginId} 님이 작성한 글만 삭제할 수 있습니다.");
+//       } else {
+//         alert(response["msg"]);
+//         window.location.href = "/room";
+//       }
+//     },
+//   });
+// }
 
 // 기존 미다님의 Delete 코드
 
-// function delete_word(uid, id, loginId) {
-//   if (id !== loginId) {
-//     alert(`${loginId} 님이 작성한 글만 삭제할 수 있습니다.`);
-//   } else {
-//     fetch("/test/delete", {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({
-//         uid_give: uid,
-//         id_give: id,
-//       }),
-//     })
-//       .then((res) => res.json())
-//       .then((response) => {
-//         console.log(response);
-//         alert("삭제되었습니다.");
-//         window.location.href = "/testroom";
-//       })
-//       .catch((error) => {
-//         console.log(error);
-//         alert(error);
-//       });
-//   }
-// }
+function delete_word(uid, id, loginId) {
+  if (id !== loginId) {
+    alert(`${loginId} 님이 작성한 글만 삭제할 수 있습니다.`);
+  } else {
+    fetch("/room/delete", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        uid_give: uid,
+        id_give: id,
+      }),
+    })
+      .then((res) => res.json())
+      .then((response) => {
+        console.log(response);
+        alert("삭제되었습니다.");
+        window.location.href = "/room";
+      })
+      .catch((error) => {
+        console.log(error);
+        alert(error);
+      });
+  }
+}
 
 function registration() {
   let textinput = $("#textinput").val();

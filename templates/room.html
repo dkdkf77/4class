@@ -2,59 +2,25 @@
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/room.css' ) }}">
 <script defer src="{{ url_for('static', filename='js/room.js') }}"></script>
-<title> N Port </title>
 {% endblock%}
 {% block content %}
-
-<section class="room-container">
-  <h2 class="room-title">4조 방명록 방</h2>
-  <div id="room-wrap">
-    <div class="room-message-wrap">
-      <span class="name">이미다</span>
-      <p class="message">출석세크합니당!</p>
-      <span class="datetime">2021년 09월 15일</span>
-      <div class="button-wrap">
-        <button class="edit-btn">수정</button>
-        <button class="delete-btn" onclick = "delete_word()">삭제</button>
-      </div>
-    </div>
-    <div class="room-message-wrap">
-      <span class="name">이미다</span>
-      <p class="message">출석세크합니당!</p>
-      <span class="datetime">2021년 09월 15일</span>
-      <div class="button-wrap">
-        <button class="edit-btn">수정</button>
-        <button class="delete-btn">삭제</button>
-      </div>
-    </div>
+<nav class="nav">
+  <div class="nav-container">
+      <h1 class="logo"><a href="/">PORT-us</a></h1>
+      <ul class="menu">
+          <li><span class="user-name">{{user_name}}</span>님 반갑습니다.</li>
+          <li class="logout-btn"><a href="#">로그아웃</a></li>
+      </ul>
   </div>
+</nav>
+<section class="room-container">
+  <h2 class="room-title">{{user_team}}팀 방명록 방</h2>
+  <div id="room-wrap"></div>
   
   <div class="create-wrap">
-    <textarea type="text" placeholder="마음을 남기세요." id="textinput" cols="120" rows="1"></textarea>
+    <input type="text" class="message" id="textinput" placeholder="방명록을 남겨주세요" />
     <button onclick="registration()" class="btn">등록</button>
   </div>
 </section>
 
-<!-- <body class="test">
-    <section class="headcss">
-      <div class="subcss">
-        <h1 class="main-font my-img"> N Port </h1>
-      </div>
-    </section>
-    <section>
-      <tbody id="postbox">
-        <div class="container my-img">
-          <div class="item item1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, suscipit.</div>
-        </div>
-      </tbody>
-      <div class="input-div">
-        <textarea type="text" placeholder="마음을 남기세요." id="textinput" cols="120" rows="1"></textarea>
-      </div>
-      <button onclick="registration()" class="btn">등록</button>
-
-      <div class="foot">
-      </div>
-
-    </section>
-</body> -->
 {% endblock %}
