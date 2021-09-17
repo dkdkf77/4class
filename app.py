@@ -73,14 +73,23 @@ def checkTeamRoom():
     teamList = list(db.comment.find({"team": user_team}, {'_id': False}))
     return jsonify({'teamMessage': teamList, 'login_user': user_id})
 
-
+# 내가 등록한 글만 삭제해야됨
+#  류승환 개자이너  delete api 코드
 @app.route('/test/delete', methods=['POST'])
 def comment_delete():
-    params = request.get_json()
-    uid_receive = params['uid_give']
-    id_receive = params['id_give']
-    db.comment.delete_one({'uid': uid_receive, 'id': id_receive})
+    uid_receive = request.form["uid_give"],
+    id_receive = request.form["id_give"],
+    db.comment.delete_one({'uid': uid_receive,'id': id_receive})
     return jsonify({'msg': "삭제되었습니다"})
+
+# 이다미 개발자님의 delete api 코드
+# @app.route('/test/delete', methods=['POST'])
+# def comment_delete():
+#     params = request.get_json()
+#     uid_receive = params['uid_give']
+#     id_receive = params['id_give']
+#     db.comment.delete_one({'uid': uid_receive, 'id': id_receive})
+#     return jsonify({'msg': "삭제되었습니다"})
 # 종료
 
 
@@ -187,8 +196,7 @@ def roompost():
 
 @app.route('/room/room_get', methods=['GET'])
 def roomget():
-    db_comment = list(db.comment.find(
-        {}, {'_id': False}).sort("datetime", -1).limit(20))
+    db_comment = list(db.comment.find({}, {'_id': False}).sort("datetime", -1).limit(20))
     for db_comments in db_comment:
         db_comments["_id"] = str(post["id"])
     return jsonify({'register': db_comment})
