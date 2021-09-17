@@ -1,12 +1,37 @@
-
-.container {
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
+.roomlist-container {
+  width: 1000px;
+  margin: 30px auto;
+}
+.roomlist-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.roomlist {
+  width: 23%;
+  height: 120px;
+  margin: 15px 0px;
+  line-height: 120px;
+  text-align: center;
+  color: #fff;
+  background-color: #000;
+  border: 1px solid black;
+}
+.roomlist:hover {
+  cursor: pointer;
+  color: #000;
+  background-color: #fff;
 }
 
+/* 지연님 작업하신 것 일단 주석해놨어요! */
+/* .container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
 
 #room-list {
   background-color: red;
@@ -16,8 +41,8 @@
   height: 185px;
   padding-top: 20px;
   padding-bottom: 10px;
-  background-image: url('http://www.picturebook-illust.com/upload_board/new_Gallery/Original/m/20185211373.jpg');
-  opacity:0.8;
+  background-image: url("http://www.picturebook-illust.com/upload_board/new_Gallery/Original/m/20185211373.jpg");
+  opacity: 0.8;
   background-size: cover;
 }
 
@@ -28,8 +53,8 @@
   height: 185px;
   padding-top: 20px;
   padding-bottom: 10px;
-  background-image: url('https://img03.scbao.com/210521/1082212-210521203Z277.jpg');
-  opacity:0.8;
+  background-image: url("https://img03.scbao.com/210521/1082212-210521203Z277.jpg");
+  opacity: 0.8;
   background-size: cover;
 }
 
@@ -51,113 +76,102 @@
   padding-bottom: 10px;
 }
 
-
-
-
 .left-div {
-  position:absolute;
-  background-color:lightblue;
+  position: absolute;
+  background-color: lightblue;
   margin-left: 320px;
   width: 100px;
   height: 60px;
   text-align: center;
-  opacity:0.7;
+  opacity: 0.7;
   padding-top: 17px;
   border-radius: 10px;
-
 }
 
 .right-div {
-  position:absolute;
-  background-color:lightblue;
-  opacity:0.7;
+  position: absolute;
+  background-color: lightblue;
+  opacity: 0.7;
   margin-left: 430px;
   width: 100px;
   height: 60px;
   text-align: center;
   padding-top: 17px;
-   border-radius: 10px;
+  border-radius: 10px;
 }
 
 .left-under-div {
-  position:absolute;
-  background-color:lightblue;
-  opacity:0.7;
+  position: absolute;
+  background-color: lightblue;
+  opacity: 0.7;
   margin-left: 320px;
   margin-top: 72px;
   width: 100px;
   height: 60px;
-   text-align: center;
+  text-align: center;
   padding-top: 17px;
-   border-radius: 10px;
+  border-radius: 10px;
 }
 
 .right-under-div {
-  position:absolute;
-  background-color:lightblue;
-  opacity:0.7;
+  position: absolute;
+  background-color: lightblue;
+  opacity: 0.7;
   margin-left: 430px;
   margin-top: 72px;
   width: 100px;
   height: 60px;
-   text-align: center;
+  text-align: center;
   padding-top: 17px;
-   border-radius: 10px;
+  border-radius: 10px;
 }
 
-
-
-
-
-
-
 .left-div2 {
-  position:absolute;
-  background-color:lightblue;
-  opacity:0.7;
+  position: absolute;
+  background-color: lightblue;
+  opacity: 0.7;
   margin-left: 570px;
   width: 100px;
   height: 60px;
-   text-align: center;
+  text-align: center;
   padding-top: 17px;
-   border-radius: 10px;
+  border-radius: 10px;
 }
 
 .right-div2 {
-  position:absolute;
-  background-color:lightblue;
-  opacity:0.7;
+  position: absolute;
+  background-color: lightblue;
+  opacity: 0.7;
   margin-left: 680px;
   width: 100px;
   height: 60px;
-   text-align: center;
+  text-align: center;
   padding-top: 17px;
-   border-radius: 10px;
+  border-radius: 10px;
 }
 
 .left-under-div2 {
-  position:absolute;
-  background-color:lightblue;
-  opacity:0.7;
+  position: absolute;
+  background-color: lightblue;
+  opacity: 0.7;
   margin-left: 570px;
   margin-top: 72px;
   width: 100px;
   height: 60px;
-   text-align: center;
+  text-align: center;
   padding-top: 17px;
-   border-radius: 10px;
+  border-radius: 10px;
 }
 
 .right-under-div2 {
-  position:absolute;
-  background-color:lightblue;
-  opacity:0.7;
+  position: absolute;
+  background-color: lightblue;
+  opacity: 0.7;
   margin-left: 680px;
   margin-top: 72px;
   width: 100px;
   height: 60px;
-   text-align: center;
+  text-align: center;
   padding-top: 17px;
-   border-radius: 10px;
-}
-
+  border-radius: 10px;
+} */

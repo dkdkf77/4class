@@ -1,27 +1,60 @@
 {% extends "index.html" %}
-{% block head%}
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/room.css' ) }}">
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/room.css' ) }}">
+<script defer src="{{ url_for('static', filename='js/room.js') }}"></script>
+<title> N Port </title>
 {% endblock%}
 {% block content %}
-    <section class="headcss">
-    <div class="subcss">
-      <h1 class="main-font"> N Port </h1>
-    </div>
-  </section>
-  <section>
-        <div class="container">
-          <div class="item item1"></div>
-          <div class="item item2"></div>
-          <div class="item item3"></div>
-          <div class="item item4"></div>
-        </div>
-        <div class="input-div">
-          <textarea name="text" id="" cols="120" rows="1">글을 남겨 보세요</textarea>
-        </div>
-          <button class="btn">등록</button>
 
-      <div class="my-img">
+<section class="room-container">
+  <h2 class="room-title">4조 방명록 방</h2>
+  <div id="room-wrap">
+    <div class="room-message-wrap">
+      <span class="name">이미다</span>
+      <p class="message">출석세크합니당!</p>
+      <span class="datetime">2021년 09월 15일</span>
+      <div class="button-wrap">
+        <button class="edit-btn">수정</button>
+        <button class="delete-btn" onclick = "delete_word()">삭제</button>
+      </div>
+    </div>
+    <div class="room-message-wrap">
+      <span class="name">이미다</span>
+      <p class="message">출석세크합니당!</p>
+      <span class="datetime">2021년 09월 15일</span>
+      <div class="button-wrap">
+        <button class="edit-btn">수정</button>
+        <button class="delete-btn">삭제</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="create-wrap">
+    <textarea type="text" placeholder="마음을 남기세요." id="textinput" cols="120" rows="1"></textarea>
+    <button onclick="registration()" class="btn">등록</button>
+  </div>
+</section>
+
+<!-- <body class="test">
+    <section class="headcss">
+      <div class="subcss">
+        <h1 class="main-font my-img"> N Port </h1>
+      </div>
+    </section>
+    <section>
+      <tbody id="postbox">
+        <div class="container my-img">
+          <div class="item item1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, suscipit.</div>
+        </div>
+      </tbody>
+      <div class="input-div">
+        <textarea type="text" placeholder="마음을 남기세요." id="textinput" cols="120" rows="1"></textarea>
+      </div>
+      <button onclick="registration()" class="btn">등록</button>
+
+      <div class="foot">
       </div>
 
-  </section>
+    </section>
+</body> -->
 {% endblock %}

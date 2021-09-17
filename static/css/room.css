@@ -1,8 +1,72 @@
-.headcss{
+.room-container {
+  width: 1000px;
+  margin: 30px auto;
+}
+.room-title {
+  margin-bottom: 30px;
+  text-align: center;
+}
+#room-wrap {
+  margin-bottom: 30px;
+}
+.room-message-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+.name {
+  width: 150px;
+  font-size: 13px;
+  color: #868e96;
+}
+.message {
+  display: inline-block;
+  margin: 0;
+  padding: 7px 10px;
+  flex: 1;
+}
+.datetime {
+  margin: 0px 20px;
+  font-size: 11px;
+}
+.edit-btn,
+.delete-btn {
+  padding: 8px 12px;
+  font-size: 13px;
+  background-color: transparent;
+  border: 1px solid #f03e3e;
+  color: #f03e3e;
+}
+.edit-btn {
+  margin-right: 10px;
+}
+.btn {
+  color: #fff;
+  background-color: #000;
+}
+.create-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.room-message-wrap:nth-child(even) {
+  background-color: #f1f3f5;
+}
+#textinput {
+  border: 1px solid #ddd;
+}
+/* .test {
+  background-color: rgb(233, 231, 231);
+}
+
+.headcss {
   background-color: blue;
 }
-.main-font{
+.main-font {
   font-size: 100px;
+  color: goldenrod;
   text-align: center;
   margin: auto;
 }
@@ -22,16 +86,15 @@
   margin: auto;
 }
 
-
 .resist {
   background-color: green;
 }
 
-.input-div {
-  width: 100px;
-  height: 20px;
+#textinput {
+  width: 500px;
+  height: 70px;
   display: block;
-  margin: 20px 500px 20px 500px;
+  margin: 20px auto;
 }
 
 .container {
@@ -45,9 +108,9 @@
 }
 
 .item {
- width: 300px;
- height: 90px;
- border: 1px solid black;
+  width: 300px;
+  height: 90px;
+  border: 2px solid black;
 }
 
 .item1 {
@@ -81,26 +144,33 @@
   background: #ffd54f;
 }
 
-
-/* .foot {
-  width: auto;
-  height: 300px;
-  background-color: royalblue;
-} */
 .btn {
   border: 1px solid skyblue;
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
   color: skyblue;
   padding: 5px;
   display: block;
   margin: auto;
+  transition: 1s;
+}
+.btn:hover {
+  border: 1px solid skyblue;
+  background-color: rgba(0, 0, 0, 0);
+  color: skyblue;
+  padding: 5px;
+  display: block;
+  margin: auto;
+  transition: 1s;
 }
 
 .my-img {
   width: auto;
-  height: 500px;
   background-image: url(https://media.istockphoto.com/vectors/vector-seamless-pattern-with-waves-from-dots-beach-and-waves-light-vector-id1319285545?b=1&k=20&m=1319285545&s=170667a&w=0&h=fl50Gpl9VavGn4yuNfYrYGENolJEcnMDIkzwmF2v-hA=);
   background-repeat: repeat;
   background-position: center;
-
 }
+.foot {
+  width: auto;
+  height: 100px;
+  background-color: rgb(233, 231, 231);
+} */
