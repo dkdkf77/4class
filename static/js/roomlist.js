@@ -3,6 +3,7 @@ window.addEventListener("load", function () {
 });
 
 function loadList() {
+  console.log("?");
   fetch("/roomlist/number", {
     method: "GET",
     headers: { "Content-Type": "application/json" },

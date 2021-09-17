@@ -3,7 +3,6 @@ $(document).ready(function () {
 });
 
 function teamRoomLoad() {
-  console.log("room js 가 나와야 하는데?");
   $.ajax({
     type: "GET",
     url: "/room/comment",

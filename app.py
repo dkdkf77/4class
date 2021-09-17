@@ -214,9 +214,9 @@ def delete_star():
 
 @app.route('/roomlist/number', methods=['GET'])
 def roomlist_number():
-    testArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
+    teamArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
                  17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
-    return jsonify({'listArray': testArray, 'team': user_team, 'name': user_name})
+    return jsonify({'listArray': teamArray, 'team': user_team, 'name': user_name})
 
 
 if __name__ == '__main__':
