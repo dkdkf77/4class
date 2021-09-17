@@ -4,6 +4,7 @@
 }
 .room-title {
   margin-bottom: 30px;
+  font-size: 32px;
   text-align: center;
 }
 #room-wrap {
@@ -14,12 +15,20 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px;
+  line-height: 1.5;
   border-bottom: 1px solid #ddd;
 }
+.room-message-wrap:nth-child(even) {
+  background-color: #f1f3f5;
+}
+.room-message-wrap:hover {
+  cursor: pointer;
+  color: #4dabf7;
+}
+
 .name {
   width: 150px;
   font-size: 13px;
-  color: #868e96;
 }
 .message {
   display: inline-block;
@@ -43,18 +52,20 @@
   margin-right: 10px;
 }
 .btn {
+  height: 40px;
+  padding: 0px 15px;
   color: #fff;
   background-color: #000;
+  border: 1px solid #000;
 }
 .create-wrap {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.room-message-wrap:nth-child(even) {
-  background-color: #f1f3f5;
-}
+
 #textinput {
+  height: 40px;
   border: 1px solid #ddd;
 }
 /* .test {
