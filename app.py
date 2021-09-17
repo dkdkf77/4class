@@ -9,8 +9,8 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 
 
-client = pymongo.MongoClient('localhost', 27017)
-# client = pymongo.MongoClient('mongodb://test:test@localhost', 27017)
+# client = pymongo.MongoClient('localhost', 27017)
+client = pymongo.MongoClient('mongodb://test:test@localhost', 27017)
 db = client.port
 
 SECRET_KEY = 'SPARTA'
