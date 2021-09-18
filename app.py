@@ -58,23 +58,34 @@ def userAuthCheck(str):
         return redirect(url_for('fail', msg="로그인 정보 없음"))
 
 
-@app.route('/testroom')
+@app.route('/room')
 def testPage():
-    return userAuthCheck("test.html")
+    return userAuthCheck("room.html")
 
 
-@app.route('/test/room', methods=['GET'])
+@app.route('/roomlist/room', methods=['GET'])
 def testRoom():
-    return render_template('test.html')
+    return render_template('room.html')
 
 
-@app.route('/test/list', methods=['GET'])
+@app.route('/room/comment', methods=['GET'])
 def checkTeamRoom():
     teamList = list(db.comment.find({"team": user_team}, {'_id': False}))
     return jsonify({'teamMessage': teamList, 'login_user': user_id})
 
+# 내가 등록한 글만 삭제해야됨
+#  류승환 개자이너  delete api 코드
 
-@app.route('/test/delete', methods=['POST'])
+
+# @app.route('/test/delete', methods=['POST'])
+# def comment_delete():
+#     uid_receive = request.form["uid_give"],
+#     id_receive = request.form["id_give"],
+#     db.comment.delete_one({'uid': uid_receive, 'id': id_receive})
+#     return jsonify({'msg': "삭제되었습니다"})
+
+# 이다미 개발자님의 delete api 코드
+@app.route('/room/delete', methods=['POST'])
 def comment_delete():
     params = request.get_json()
     uid_receive = params['uid_give']
@@ -185,15 +196,6 @@ def roompost():
     return jsonify({'msg': '등록 완료!'})
 
 
-@app.route('/room/room_get', methods=['GET'])
-def roomget():
-    db_comment = list(db.comment.find(
-        {}, {'_id': False}).sort("datetime", -1).limit(20))
-    for db_comments in db_comment:
-        db_comments["_id"] = str(post["id"])
-    return jsonify({'register': db_comment})
-
-
 @app.route('/room/delete', methods=['POST'])
 def delete_star():
     speak_receive = request.form["speak_give"]
@@ -203,9 +205,9 @@ def delete_star():
 
 @app.route('/roomlist/number', methods=['GET'])
 def roomlist_number():
-    testArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
+    teamArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
                  17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
-    return jsonify({'listArray': testArray, 'team': user_team, 'name': user_name})
+    return jsonify({'listArray': teamArray, 'team': user_team, 'name': user_name, 'id': user_id})
 
 
 if __name__ == '__main__':
