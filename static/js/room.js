@@ -1,30 +1,34 @@
+// 등록 클릭 시 자동 새로고침 함수
 $(document).ready(function () {
   teamRoomLoad();
 });
+
+// 댓글, 이름, 날짜, uid, id를 받아 뿌려주는 get 요청 함수
 function teamRoomLoad() {
   $.ajax({
     type: "GET",
     url: "/room/comment",
     data: {},
     success: function (response) {
+      // db에 등록 된 정보를 받아 오는 함수
       let teamMessage = response["teamMessage"];
       let loginUser = response["login_user"];
+      // db 정보를 반복문으로 돌려 주는 함수
       for (let i = 0; i < teamMessage.length; i++) {
         let speak = teamMessage[i]["speak"];
         let name = teamMessage[i]["name"];
         let date = teamMessage[i]["date"];
         let uid = teamMessage[i]["uid"];
         let id = teamMessage[i]["id"];
-
+      // db 정보를 실직적으로 뷰포트에 보여주는 함수
         let temp_html = `<div class="room-message-wrap">
                             <span class="name">${name}</span>
                             <p class="message">${speak}</p>
                             <span class="datetime">${date}</span>
                             <div class="button-wrap">
-                         
-                              <button class="delete-btn" onclick="delete_word('${uid}','${id}','${loginUser}')">삭제</button>
+                            <button class="delete-btn" onclick="delete_word('${uid}','${id}','${loginUser}')">삭제</button>
                             </div>
-                        </div>`;
+                        </div>`;                 
         $("#room-wrap").append(temp_html);
       }
     },
@@ -117,11 +121,13 @@ function delete_word(uid, id, loginId) {
   }
 }
 
+// 대화창에 입력 후 등록 버튼 클릭시 등록이 되게 끔 해주는 함수
 function registration() {
   let textinput = $("#textinput").val();
   if (textinput === "") {
     alert("내용을 입력해주세요");
   } else {
+    // 버튼 클릭시 텍스트를 등록 후 경고 창 출력 그리고 새로고침을 해주는 함수
     $.ajax({
       type: "POST",
       url: "/room/room_post",
