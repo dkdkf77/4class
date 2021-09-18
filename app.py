@@ -57,17 +57,16 @@ def userAuthCheck(str):
     except jwt.exceptions.DecodeError:
         return redirect(url_for('fail', msg="로그인 정보 없음"))
 
-
+ # 방명록 페이지 API
 @app.route('/room')
 def testPage():
     return userAuthCheck("room.html")
-
 
 @app.route('/roomlist/room', methods=['GET'])
 def testRoom():
     return render_template('room.html')
 
-
+# 방명록 페이지 팀 메시지와 유저 아이디 get API
 @app.route('/room/comment', methods=['GET'])
 def checkTeamRoom():
     teamList = list(db.comment.find({"team": user_team}, {'_id': False}))
