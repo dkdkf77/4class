@@ -1,3 +1,4 @@
+# 각종 모듈
 from flask import Flask, render_template, jsonify, request, session, redirect, url_for
 import pymongo
 import jwt
@@ -57,17 +58,16 @@ def userAuthCheck(str):
     except jwt.exceptions.DecodeError:
         return redirect(url_for('fail', msg="로그인 정보 없음"))
 
-
+ # 방명록 페이지 API
 @app.route('/room')
 def testPage():
     return userAuthCheck("room.html")
-
 
 @app.route('/roomlist/room', methods=['GET'])
 def testRoom():
     return render_template('room.html')
 
-
+# 방명록 페이지 팀 메시지와 유저 아이디 get API
 @app.route('/room/comment', methods=['GET'])
 def checkTeamRoom():
     teamList = list(db.comment.find({"team": user_team}, {'_id': False}))
@@ -176,13 +176,13 @@ def signup():
     db.users.insert_one(doc)
     return jsonify({'result': "회원가입되었습니다."})
 
-
+# 방명록에 inputbox에 입력시 많은 정보를 받아 DB에 저장 하는 API
 @app.route('/room/room_post', methods=['POST'])
 def roompost():
     comment_receive = request.form['comment_give']
     now = datetime.datetime.now()
     now_date_time = now.strftime("%Y년 %m월 %d일 %H:%M:%S")
-
+    # uid,inputbox,id,name,team,date 등을 다큐먼트에 저장 및 db commnet에 저장
     doc = {
         "uid": uuid.uuid4().hex,
         "speak": comment_receive,
@@ -190,8 +190,7 @@ def roompost():
         "name": user_name,
         "team": int(user_team),
         "date": now_date_time
-
-    }
+        }
     db.comment.insert_one(doc)
     return jsonify({'msg': '등록 완료!'})
 

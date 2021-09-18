@@ -3,20 +3,23 @@
 <script defer src="{{ url_for('static', filename='js/login.js') }}"></script>
 {% endblock %}
 {% block content %}
-<div class="login-container">
-    <section class="login-wrap">
-        <h2 class="sub-title">로그인</h2>
-        <div class="label-box">
-            <div class="label-wrap">
-                <label>아이디</label>
-                <input type="text" class="login-id" placeholder="아이디를 입력해주세요"/>
+
+    <div class="login-container">
+        <section class="login-wrap">
+            <h2 class="sub-title">로그인</h2>
+            <div class="label-box">
+                <div class="label-wrap">
+                    <label>아이디</label>
+                    <input type="text" class="login-id" placeholder="아이디를 입력해주세요"/>
+                </div>
+                <p class="help-text help-text-login-id"></p>
             </div>
-            <p class="help-text help-text-login-id"></p>
-        </div>
-        <div class="label-box">
-            <div class="label-wrap">
-                <label>비밀번호</label>
-                <input type="password" class="login-pw" placeholder="비밀번호를 입력해주세요"/>
+            <div class="label-box">
+                <div class="label-wrap">
+                    <label>비밀번호</label>
+                    <input type="password" class="login-pw" placeholder="비밀번호를 입력해주세요"/>
+                </div>
+                <p class="help-text help-text-login-pw"></p>
             </div>
             <p class="help-text help-text-login-pw"></p>
         </div>
