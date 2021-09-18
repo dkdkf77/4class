@@ -1,7 +1,6 @@
 $(document).ready(function () {
   teamRoomLoad();
 });
-
 function teamRoomLoad() {
   $.ajax({
     type: "GET",
@@ -35,6 +34,7 @@ function teamRoomLoad() {
 // window.addEventListener("load", function () {
 //   teamRoomLoad();
 // });
+// 방에 입장했을 때 발생하는 함수
 // function teamRoomLoad() {
 //   fetch("/room/comment", {
 //     method: "GET",
@@ -89,11 +89,13 @@ function teamRoomLoad() {
 // }
 
 // 기존 미다님의 Delete 코드
-
+// 삭제 버튼을 클릭했을 때 필요한 매개변수를 받는다(글 작성시 생성된 uid, 로그인한 회원의 id, 글작성한 사람의 id)
 function delete_word(uid, id, loginId) {
+  // 로그인한 id와 글 작성한 사람의 id가 같지 않으면 경고창을 띄워준다.
   if (id !== loginId) {
     alert(`${loginId} 님이 작성한 글만 삭제할 수 있습니다.`);
   } else {
+    // 그 외(글 작성한 사람의 id와 로그인한 사람의 id가 같을 경우)
     fetch("/room/delete", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
