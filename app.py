@@ -195,15 +195,6 @@ def roompost():
     return jsonify({'msg': '등록 완료!'})
 
 
-@app.route('/room/room_get', methods=['GET'])
-def roomget():
-    db_comment = list(db.comment.find(
-        {}, {'_id': False}).sort("datetime", -1).limit(20))
-    for db_comments in db_comment:
-        db_comments["_id"] = str(post["id"])
-    return jsonify({'register': db_comment})
-
-
 @app.route('/room/delete', methods=['POST'])
 def delete_star():
     speak_receive = request.form["speak_give"]
@@ -215,7 +206,7 @@ def delete_star():
 def roomlist_number():
     teamArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
                  17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
-    return jsonify({'listArray': teamArray, 'team': user_team, 'name': user_name})
+    return jsonify({'listArray': teamArray, 'team': user_team, 'name': user_name, 'id': user_id})
 
 
 if __name__ == '__main__':

@@ -134,6 +134,18 @@
   color: #fff;
   font-weight: 500;
 }
+.signup-page-btn {
+  width: 100%;
+}
+.signup-page-btn a {
+  display: block;
+  width: 100%;
+  padding: 15px;
+}
+.team-message {
+  margin-top: 10px;
+  color: #4dabf7;
+}
 @media screen and (max-width: 1200px) {
   .nav-container,
   .roomlist-container,

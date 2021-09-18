@@ -6,35 +6,15 @@ const loginBtn = document.querySelector(".login-btn");
 let helploginId = document.querySelector(".help-text-login-id");
 let helploginPw = document.querySelector(".help-text-login-pw");
 
-function checkTextLogin(value) {
-  switch (value) {
-    case "loginid":
-      helploginId.classList.add("show");
-      helploginId.innerHTML = `아이디를 입력해주세요`;
-      break;
-    case "loginid-hidden":
-      helploginId.classList.remove("show");
-      helploginId.innerHTML = ``;
-      break;
-    case "loginpw":
-      helploginPw.classList.add("show");
-      helploginPw.innerHTML = `비밀번호를 입력해주세요`;
-      break;
-    case "loginpw-hidden":
-      helploginPw.classList.remove("show");
-      helploginPw.innerHTML = ``;
-      break;
-    default:
-      console.log("check check!!");
-  }
-}
-
+// 로그인 버튼을 클릭하면 발생하는 함수
 loginBtn.addEventListener("click", () => {
-  if (loginId.value === "") checkTextLogin("loginid");
-  if (loginId.value !== "") checkTextLogin("loginid-hidden");
-  if (loginPw.value === "") checkTextLogin("loginpw");
-  if (loginPw.value !== "") checkTextLogin("loginpw-hidden");
+  // 해당 input값에 값이 없거나 있을때 checkText함수로 문구 제어
+  if (loginId.value === "") checkText("loginid");
+  if (loginId.value !== "") checkText("loginid-hidden");
+  if (loginPw.value === "") checkText("loginpw");
+  if (loginPw.value !== "") checkText("loginpw-hidden");
 
+  // 로그인 id, pw 값이 모두 있어야 서버와 통신을 시작
   if (loginId.value !== "" && loginPw.value !== "") {
     fetch("/login/save", {
       method: "POST",
@@ -46,10 +26,13 @@ loginBtn.addEventListener("click", () => {
     })
       .then((res) => res.json())
       .then((response) => {
+        // 로그인 성공시 cookie에 토큰을 저장한다.
         if (response.result === "success") {
           document.cookie = `port-token=${response.token}`;
+          // 토큰을 저장후 메인페이지로 이동한다
           document.location.href = "roomlist";
         } else if (response.result === "fail") {
+          // 실패시 실패 메세지를 띄워준다.
           alert(response.msg);
         }
       })
