@@ -68,6 +68,14 @@
   height: 40px;
   border: 1px solid #ddd;
 }
+
+#all-delete {
+  padding: 10px 15px;
+  color: #ff6b6b;
+  border: 1px solid #ff6b6b;
+  background-color: #fff;
+}
+
 /* .test {
   background-color: rgb(233, 231, 231);
 }

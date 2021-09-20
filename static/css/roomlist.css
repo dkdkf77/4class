@@ -9,21 +9,109 @@
   flex-wrap: wrap;
 }
 .roomlist {
-  width: 23%;
-  height: 120px;
+  width: 22%;
+  height: 110px;
   margin: 15px 0px;
-  line-height: 120px;
+  line-height: 110px;
   text-align: center;
   color: #fff;
   background-color: #000;
   border: 1px solid black;
 }
-.roomlist:hover {
+
+.roomlist-wrap:hover {
   cursor: pointer;
   color: #000;
   background-color: #fff;
 }
+.team-change-text {
+  margin-bottom: 10px;
+  color: #e64980;
+}
+.team-change-btn {
+  padding: 6px 12px;
+  border: 1px solid #f06595;
+  border-radius: 3px;
+  background-color: #fff;
+  color: #f06595;
+}
 
+.team-popup-bg {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 10;
+}
+.team-popup-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.team-popup-content {
+  width: 600px;
+  padding: 50px;
+  background-color: #fff;
+}
+.show {
+  display: block;
+}
+.team-popup-content {
+  position: relative;
+}
+.team-popup-content h2 {
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+.team-popup-close {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  padding: 8px 12px;
+  color: #495057;
+  background-color: #fff;
+  border: 1px solid #adb5bd;
+}
+.popup-wrap {
+  margin-top: 40px;
+}
+.team-text {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: #343a40;
+}
+.team-text span {
+  font-weight: 400;
+  color: #fa5252;
+}
+.change-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+}
+.change-wrap label {
+  width: 80px;
+  font-size: 16px;
+  font-weight: 400;
+}
+.change-wrap input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #dee2e6;
+}
+.change-wrap button {
+  padding: 10px 20px;
+  color: #fff;
+  border: 1px solid #fa5252;
+  background-color: #fa5252;
+}
 /* 지연님 작업하신 것 일단 주석해놨어요! */
 /* .container {
   width: 100%;
