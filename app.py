@@ -59,40 +59,9 @@ def userAuthCheck(str):
         return redirect(url_for('fail', msg="로그인 정보 없음"))
 
  # 방명록 페이지 API
-@app.route('/room')
-def testPage():
-    return userAuthCheck("room.html")
 
-@app.route('/roomlist/room', methods=['GET'])
-def testRoom():
-    return render_template('room.html')
 
 # 방명록 페이지 팀 메시지와 유저 아이디 get API
-@app.route('/room/comment', methods=['GET'])
-def checkTeamRoom():
-    teamList = list(db.comment.find({"team": user_team}, {'_id': False}))
-    return jsonify({'teamMessage': teamList, 'login_user': user_id})
-
-# 내가 등록한 글만 삭제해야됨
-#  류승환 개자이너  delete api 코드
-
-
-# @app.route('/test/delete', methods=['POST'])
-# def comment_delete():
-#     uid_receive = request.form["uid_give"],
-#     id_receive = request.form["id_give"],
-#     db.comment.delete_one({'uid': uid_receive, 'id': id_receive})
-#     return jsonify({'msg': "삭제되었습니다"})
-
-# 이다미 개발자님의 delete api 코드
-@app.route('/room/delete', methods=['POST'])
-def comment_delete():
-    params = request.get_json()
-    uid_receive = params['uid_give']
-    id_receive = params['id_give']
-    db.comment.delete_one({'uid': uid_receive, 'id': id_receive})
-    return jsonify({'msg': "삭제되었습니다"})
-# 종료
 
 
 @app.route('/fail')
@@ -138,7 +107,7 @@ def login():
         payload = {
             'id': userid_receive,
             # 토큰 유효시간
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=5)
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
         }
 
         token = jwt.encode(payload, SECRET_KEY,
@@ -177,6 +146,8 @@ def signup():
     return jsonify({'result': "회원가입되었습니다."})
 
 # 방명록에 inputbox에 입력시 많은 정보를 받아 DB에 저장 하는 API
+
+
 @app.route('/room/room_post', methods=['POST'])
 def roompost():
     comment_receive = request.form['comment_give']
@@ -190,7 +161,7 @@ def roompost():
         "name": user_name,
         "team": int(user_team),
         "date": now_date_time
-        }
+    }
     db.comment.insert_one(doc)
     return jsonify({'msg': '등록 완료!'})
 
@@ -202,11 +173,59 @@ def delete_star():
     return jsonify({'result': 'success', 'msg': '삭제 완료 !'})
 
 
+@app.route('/room/comment', methods=['GET'])
+def checkTeamRoom():
+    teamList = list(db.comment.find({"team": user_team}, {'_id': False}))
+    return jsonify({'teamMessage': teamList, 'login_user': user_id, 'team': user_team})
+
+# 내가 등록한 글만 삭제해야됨
+#  류승환 개자이너  delete api 코드
+
+
+# @app.route('/test/delete', methods=['POST'])
+# def comment_delete():
+#     uid_receive = request.form["uid_give"],
+#     id_receive = request.form["id_give"],
+#     db.comment.delete_one({'uid': uid_receive, 'id': id_receive})
+#     return jsonify({'msg': "삭제되었습니다"})
+
+# 이다미 개발자님의 delete api 코드
+@app.route('/room/delete', methods=['POST'])
+def comment_delete():
+    params = request.get_json()
+    uid_receive = params['uid_give']
+    id_receive = params['id_give']
+    db.comment.delete_one({'uid': uid_receive, 'id': id_receive})
+    return jsonify({'msg': "삭제되었습니다"})
+
+
+@app.route('/room/delete/all', methods=['POST'])
+def comment_all_delete():
+    params = request.get_json()
+    team_receive = params['team_give']
+
+    db.comment.delete_many({'team': team_receive})
+
+    return jsonify({'msg': "방명록 내용이 전체 삭제되었습니다"})
+
+
 @app.route('/roomlist/number', methods=['GET'])
 def roomlist_number():
     teamArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
                  17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
     return jsonify({'listArray': teamArray, 'team': user_team, 'name': user_name, 'id': user_id})
+
+
+@app.route('/roomlist/change/number', methods=['POST'])
+def roomlist_change_number():
+    params = request.get_json()
+    userid_receive = params['uid_give']
+    changeteam_receive = int(params['changeTeam_give'])
+
+    db.users.update_one({'id': userid_receive}, {
+        '$set': {'team': changeteam_receive}})
+
+    return jsonify({'msg': "팀 번호가 변경되었습니다."})
 
 
 if __name__ == '__main__':
