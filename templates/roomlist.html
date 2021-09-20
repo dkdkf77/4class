@@ -13,8 +13,37 @@
         </ul>
     </div>
 </nav>
+<div class="team-popup-bg">
+    <div class="team-popup-wrap">
+        <section class="team-popup-content">
+            <h2>{{user_name}}님, 반갑습니다.</h2>
+            <button class="team-popup-close">닫기</button>
+            <div class="popup-wrap">
+                <p class="team-text">{{user_name}}님의 현재 <span>팀 번호는 {{user_team}}팀</span> 입니다.
+                <br />
+                팀 번호를 수정하시려면 아래 입력칸을 등록해주세요.<br/>
+                1 ~ 32번 외의 팀 번호는 팀별 방명록에 입장할 수 없습니다.
+                </p>
+                <div class="change-wrap">
+                    <label>팀 번호</label>
+                    <input id="change-team-number" type="text" placeholder="수정할 팀 번호를 숫자로만 입력해주세요."/>
+                    <button id="change-btn">수정</button>
+                </div>
+                
+            </div>
+        </section>
+    </div>
+</div>
 <section class="roomlist-container">
     <h2 class="readable-hidden">팀별 방 목록</h2>
-    <div class="roomlist-wrap"></div>
+    <div class="team-change-wrap">
+        <p class="team-change-text">팀이 바뀌셨나요? 팀 번호를 수정해보세요!</p>
+        <button class="team-change-btn">팀 번호 수정하기</button>
+    </div>
+    <div class="roomlist-wrap">
+        
+    </div>
+   
 </section>
+
 {% endblock %}

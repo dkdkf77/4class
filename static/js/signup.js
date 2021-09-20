@@ -12,64 +12,11 @@ let helpCheckPw = document.querySelector(".help-text-check-pw");
 let helpName = document.querySelector(".help-text-name");
 let helpTeam = document.querySelector(".help-text-team");
 
-function checkText(value) {
-  switch (value) {
-    case "signupId":
-      helpId.innerHTML = `아이디를 입력해주세요`;
-      break;
-    case "signupId-reg":
-      helpId.innerHTML = `아이디는 영문자로 시작하는 6~20자 영문자 또는 숫자만 가능합니다`;
-      break;
-    case "signupId-reg-Btn":
-      helpId.innerHTML = `아이디 중복 체크를 확인해주세요.`;
-      break;
-    case "signupId-reg-check":
-      helpId.innerHTML = `사용할 수 있는 아이디입니다.`;
-      break;
-    case "signupId-haveId":
-      helpId.innerHTML = `중복된 아이디 입니다.`;
-      break;
-    case "signupId-hidden":
-      helpId.innerHTML = ``;
-      break;
-    case "signupPw":
-      helpPw.innerHTML = `비밀번호를 입력해주세요`;
-      break;
-    case "signupPw-hidden":
-      helpPw.innerHTML = ``;
-      break;
-    case "signupCheckPw":
-      helpCheckPw.innerHTML = `비밀번호를 한번 더 입력해주세요`;
-      break;
-    case "signupCheckPw-check":
-      helpCheckPw.innerHTML = `동일한 비밀번호를 입력해주세요`;
-      break;
-    case "signupCheckPw-hidden":
-      helpCheckPw.innerHTML = ``;
-      break;
-    case "signupName":
-      helpName.innerHTML = `이름을 입력해주세요`;
-      break;
-    case "signupName-hidden":
-      helpName.innerHTML = ``;
-      break;
-    case "signupTeam":
-      helpTeam.innerHTML = `조를 입력해주세요`;
-      break;
-    case "signupTeam-number":
-      helpTeam.innerHTML = `숫자로만 입력해주세요`;
-      break;
-    case "signupTeam-hidden":
-      helpTeam.innerHTML = ``;
-      break;
-    default:
-      console.log("check check!!");
-  }
-}
 // 아이디 중복 확인 버튼 클릭했는지 확인하는 변수
 let checkId = false;
 // 회원가입 버튼 클릭 했을 때
 signupBtn.addEventListener("click", () => {
+  // 해당 input값에 값이 없거나 있을때 checkText함수로 문구 제어
   if (signupId.value === "") checkText("signupId");
   if (signupId.value !== "") checkText("signupId-hidden");
   if (signupPw.value === "") checkText("signupPw");
@@ -83,16 +30,19 @@ signupBtn.addEventListener("click", () => {
   if (signupTeam.value !== "") checkText("signupTeam-hidden");
   if (isNaN(signupTeam.value)) checkText("signupTeam-number");
 
+  // 아이디 중복체크를 하지 않으면 return되게 조건처리
   if (!checkId) {
     checkText("signupId-reg-Btn");
     return null;
   } else if (
+    // 아이디 중복체크를 하고, input의 모든 값이 입력되었으면 통신을 시작
     checkId &&
     signupId.value !== "" &&
     signupPw.value !== "" &&
     signupPw.value === signupCheckPw.value &&
     signupName.value !== "" &&
     signupTeam.value !== "" &&
+    // 팀 번호의 값이 숫자여야만 함
     !isNaN(signupTeam.value)
   ) {
     fetch("/signup/save", {
@@ -119,16 +69,12 @@ signupBtn.addEventListener("click", () => {
 
 idCheckBtn.addEventListener("click", () => {
   helpId.style.color = "#fa5252";
-  if (signupId.value === "") {
-    helpId.classList.contains("show-color") &&
-      helpId.classList.remove("show-color");
-    checkText("signupId");
-    return null;
-  }
+  // 입력한 id의 값이 정규표현식을 통과한 값이 아니면 return
   if (!is_id(signupId.value)) {
     checkText("signupId-reg");
     return null;
   }
+  // 입력한 id의 값이 정규표현식을 통과한 값이면 checkId의 변수의 상태를 변경
   if (is_id(signupId.value)) {
     checkText("signupId-reg-check");
     checkId = true;
